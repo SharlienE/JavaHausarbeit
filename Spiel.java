@@ -1,10 +1,18 @@
-
+import java.util.Scanner;
 /**
- * Beschreiben Sie hier die Klasse Spiel.
+ * Klasse Spiel
+ * Dies ist die Main-Klasse des Programms "Korbwurf"
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Jan Rietmüller (JR)
+ * @author Sharlien Ehlers (SE)
+ * @author Ann-Kathrin Siekmeier (AS)
+ * 
+ * Zenturie: W18b
+ * @version 09052020
  */
+
+
+
 public class Spiel
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
