@@ -35,6 +35,7 @@ import java.awt.geom.*;
        private int xPosition; // xPosition des Balls
        private int yPosition; // yPosition des Balls
        private final int bodenhoehe; // = 400???; // y-Position des Bodens
+       // private final int deckenhoehe; // =0???; // y-Position der Decke
        private Canvas leinwand; 
        private int yGeschwindigkeit = 1; // anfängliche Abwärtsgeschwindigkeit
        private int xGeschwindigkeit = 1; // ???
@@ -56,9 +57,9 @@ import java.awt.geom.*;
            yPosition = yPos;
            farbe = ballfarbe;
            durchmesser = durchmesserball;
-           bodenhoehe = bodenposition;
+           bodenhoehe = bodenposition; // ???
            leinwand = leinwandBall;
-           wurfrichtung = r;
+           wurfrichtung = r; // selbst hinzugefügt; ???
            // Hat Ball auch Attribute Geschwindigkeit / Stoßrichtung??
            // --> Bezug zu Scannnereingabe
          }
@@ -113,11 +114,19 @@ import java.awt.geom.*;
         if (yPosition == bodenhoehe && xPosition >=60){
            zeichneBall();
            // korb = Color rot ???
+           // Methode "ballAufBoden"
+         
         }
         if (yPosition == bodenhoehe && xPosition < 60) {
             zeichneBall();
             // korb = Color grün ???
+            // Methode "ballImKorb"
+            
         }
+        // if (yPosition == deckenhoehe || xPosition = 0 || xPosition == 600) {
+        // Abprall abprall = new Abprall ();
+        // abprall.abstoßen();
+        //}
     }
     
     /**
