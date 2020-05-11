@@ -25,11 +25,12 @@ public class Punkt
     /**
      * Methode zur Berechnung von Geschwindigkeit (Pythagoras)
      */
-    public void setzeGeschwindigkeit (){
+    public float setzeGeschwindigkeit (int x, int y){
         //hier kommt die Berechnung (pythagoras)
         v = (int) Math.pow(x,2) + (int) Math.pow(y,2);
         geschwindigkeit = (int) Math.sqrt(v);
         System.out.println("geschwindigkeit ist:" +geschwindigkeit);
+        return geschwindigkeit;
     }
     
     /**

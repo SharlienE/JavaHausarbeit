@@ -94,13 +94,14 @@ import java.awt.geom.*;
     public void bewegen()
     {
         //wenn eingabe="s"
+        //Punkt punkt1 = new Punkt();
         
         
         // An der aktuellen Position von der Leinwand entfernen.
         loescheBall();
             
         // Neue Position berechnen.
-        yGeschwindigkeit += gravitation;
+        //punkt1.setzeGeschwindigkeit(x, y) += gravitation; 
         
         yPosition += yGeschwindigkeit;
         xPosition += -2; //veränderbar??
