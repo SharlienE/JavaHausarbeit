@@ -28,12 +28,11 @@ import java.awt.geom.*;
        // Instanzvariablen
        private static final int gravitation = 3; //Gravitationskraft
                 
-       private int bremsfaktor = 2;  // Simulation des Luftwiderstandes
        private Ellipse2D.Double ball; // Definition einer Ellipse mit doppelter Genauigkeit
        private Color farbe; // Farbe des Balls
        private int durchmesser; // Durchmesser des Balls
-       private int xPosition; // xPosition des Balls
-       private int yPosition; // yPosition des Balls
+       private int xPosition; // aktuelle xPosition des Balls
+       private int yPosition; // aktuelle yPosition des Balls
        private final int bodenhoehe; // = 400???; // y-Position des Bodens
        // private final int deckenhoehe; // =0???; // y-Position der Decke
        private Canvas leinwand; 
@@ -109,7 +108,7 @@ import java.awt.geom.*;
         // Prüfen, ob der Boden erreicht ist.
         if(yPosition >= (bodenhoehe - durchmesser) && yGeschwindigkeit>0) {
             yPosition = (int) (bodenhoehe - durchmesser);
-            yGeschwindigkeit = -yGeschwindigkeit + bremsfaktor; 
+            yGeschwindigkeit = -yGeschwindigkeit; 
             
         }
         
