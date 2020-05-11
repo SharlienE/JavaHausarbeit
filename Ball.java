@@ -49,7 +49,7 @@ import java.awt.geom.*;
         * 
         */
         public Ball(int xPos, int yPos, int durchmesserball, Color ballfarbe, 
-                    int bodenposition, Canvas leinwandBall, int r)
+                    int bodenposition, Canvas leinwandBall)
          {
            //"zeichengrund" = leinwandBall
                     
@@ -59,7 +59,8 @@ import java.awt.geom.*;
            durchmesser = durchmesserball;
            bodenhoehe = bodenposition; // ???
            leinwand = leinwandBall;
-           wurfrichtung = r; // selbst hinzugefügt; ???
+           //geschw = yGeschwindigkeit;
+           // wurfrichtung = r; // selbst hinzugefügt; ???
            // Hat Ball auch Attribute Geschwindigkeit / Stoßrichtung??
            // --> Bezug zu Scannnereingabe
          }
@@ -86,11 +87,12 @@ import java.awt.geom.*;
     }
     
     /**
-     * Bewege den Ball 
+     * An example of a method - replace this comment with your own
      *
-     * 
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
      */
-    public void bewegeBall()
+    public void bewegen()
     {
         //wenn eingabe="s"
         
@@ -100,33 +102,71 @@ import java.awt.geom.*;
             
         // Neue Position berechnen.
         yGeschwindigkeit += gravitation;
-        xGeschwindigkeit += gravitation;
+        
         yPosition += yGeschwindigkeit;
-        xPosition += xGeschwindigkeit;
-
+        xPosition += -2; //veränderbar??
+        
         // Prüfen, ob der Boden erreicht ist.
-        while(yPosition > (bodenhoehe - durchmesser) && yGeschwindigkeit > 0 && xGeschwindigkeit > 0) {
+        if(yPosition >= (bodenhoehe - durchmesser) && yGeschwindigkeit>0) {
             yPosition = (int) (bodenhoehe - durchmesser);
             yGeschwindigkeit = -yGeschwindigkeit + bremsfaktor; 
+            
+        }
+        
             // An der neuen Position erneut zeichnen.
             zeichneBall();
-        }
-        if (yPosition == bodenhoehe && xPosition >=60){
-           zeichneBall();
+            
+            
+        //if (yPosition == bodenhoehe && xPosition >=60){
+           //zeichneBall();
            // korb = Color rot ???
            // Methode "ballAufBoden"
          
-        }
-        if (yPosition == bodenhoehe && xPosition < 60) {
-            zeichneBall();
+        //}
+        //if (yPosition == bodenhoehe && xPosition < 60) {
+            //zeichneBall();
             // korb = Color grün ???
             // Methode "ballImKorb"
             
-        }
+        //}
         // if (yPosition == deckenhoehe || xPosition = 0 || xPosition == 600) {
         // Abprall abprall = new Abprall ();
         // abprall.abstoßen();
         //}
+    }
+
+    /**
+     * Bewege den Ball 
+     *
+     * 
+     */
+    public void bewegeBall()
+    {
+        //wenn eingabe="s"
+        int boden  = 400;
+        
+        leinwand.setVisible(true);
+        
+        boolean fertig =  false;
+        while(!fertig) {
+            leinwand.wait(50);           // kurze Pause
+            bewegen();
+            
+            // Stoppen, wenn die Bälle weit genug gesprungen sind.
+            if(xPosition<=60) {
+                fertig = true;
+                //Färbe Korb grün
+            }
+            else {
+                fertig = false;
+                
+            }
+            
+        }
+        if (fertig = true && xPosition>=60){
+                //Färbe Korb rot
+            }
+        
     }
     
     /**
@@ -187,7 +227,7 @@ import java.awt.geom.*;
     public void stossrichtungLinks()
     {
         // wenn eingabe="l"
-        
+        // setzeStossrichtung(xPos--);
     }
 
     /**
@@ -199,7 +239,7 @@ import java.awt.geom.*;
     public void stossrichtungRechts()
     {
         // wenn eingabe="r"
-        
+        // setzeStossrichtung(xPos++);
     }
     
     /**
@@ -211,7 +251,7 @@ import java.awt.geom.*;
     public void erhoeheGeschwindigkeit()
     {
         // wenn eingabe="+"
-        
+        // setzeGeschwindigkeit(geschw++);
     }
     
     /**
@@ -223,9 +263,20 @@ import java.awt.geom.*;
     public void reduziereGeschwindigkeit()
     {
         // wenn eingabe="-"
-        
+        // setzeGeschwindigkeit(geschw--);
     }
     
-    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void setzeGeschwindigkeit(int geschw)
+    {
+        // put your code here
+        geschw = yGeschwindigkeit;
+    }
+
 
 }       

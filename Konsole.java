@@ -21,7 +21,7 @@ public class Konsole
     public Konsole()
     {
         // Instanzvariable initialisieren
-        x = 0;
+        
     }
 
     /**
@@ -30,9 +30,23 @@ public class Konsole
      * @param  y    ein Beispielparameter für eine Methode
      * @return        die Summe aus x und y
      */
-    public int beispielMethode(int y)
+    public void zeigeHilfetext()
     {
         // tragen Sie hier den Code ein
-        return x + y;
+        System.out.println("");
+        System.out.println("-------- " + "Spiel: Korbwurf" + "-----------------");
+        System.out.println("-                                       -");
+        System.out.println("- Bitte geben Sie ein Kommando ein! -");
+        System.out.println("- l:                 -");
+        System.out.println("- r:                 -");
+        System.out.println("- +:                 -");
+        System.out.println("- -:                 -");
+        System.out.println("- Enter:             -");
+        System.out.println("- s:                 -");
+        System.out.println("- f:                 -");
+        System.out.println("- h:                 -");
+        System.out.println("- q:                 -");
+        System.out.println("-------- Viel Glück! -------");
+        
     }
 }
