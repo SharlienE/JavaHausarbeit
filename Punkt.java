@@ -32,4 +32,7 @@ public class Punkt
         System.out.println("geschwindigkeit ist:" +geschwindigkeit);
     }
     
+    /**
+     * Methode für die Wurfrichtung
+     */
 }
