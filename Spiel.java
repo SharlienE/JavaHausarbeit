@@ -142,9 +142,12 @@ public class Spiel
                 System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                     break;
                 case("+"):
-                anfangspunkt.setKrafthoch(); 
-                System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getKraft() + " gesetzt.");
-                System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
+                //anfangspunkt.setKrafthoch(); 
+                //System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getKraft() + " gesetzt.");
+                //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
+                anfangspunkt.setGeschwindigkeitHoch();
+                System.out.println("Geschwindigkeit auf :" + anfangspunkt.getGeschwindigkeit() + " erhöht.");
+                
                     break;
                 case("-"):
                 anfangspunkt.setKraftrunter();
