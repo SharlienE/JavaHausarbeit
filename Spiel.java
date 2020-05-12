@@ -20,6 +20,8 @@ public class Spiel
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private Canvas leinwand;
     private Ball ball1;
+    private int xPosition; // aktuelle xPosition des Balls
+    private int yPosition; // aktuelle yPosition des Balls
     
     private String defaultprompt = ">";
     private Scanner scanner = new Scanner(System.in);
@@ -76,14 +78,19 @@ public class Spiel
         ball1.zeichneBall(); 
     }
     
-    public void faerbeKorb
+      public void faerbekorb (){
+        
+        
+    }; // Korb soll bei Ballberührung gefärbt werden
+    
     
     /**
      * Lesen eines Kommandos
      * @param prompt     String, der dem Benutzer anzeigt, dass eine Eingabe erfolgen kann
      * @return String    Eingegebens Kommando mit kleinen Buchstaben, ohne führende oder folgende Leerzeichen
      */
-    private String lesen(String prompt){ 
+   
+     private String lesen (String prompt){ 
         // In dieser Variable wird der eingelesene String gespeichert, der zurückgegeben wird
         String eingabe;
         
