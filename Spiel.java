@@ -132,32 +132,37 @@ public class Spiel
         while (eingabe.length()!=0){
             switch(eingabe){
                 case("l"):
-                anfangspunkt.setRichtunghoch();
+                anfangspunkt.setRichtungHoch();
                 System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
                 System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                     break;
+                    
                 case("r"):
-                anfangspunkt.setRichtungrunter();
+                anfangspunkt.setRichtungRunter();
                 System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
                 System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                     break;
+                    
                 case("+"):
                 //anfangspunkt.setKrafthoch(); 
                 //System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getKraft() + " gesetzt.");
                 //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                 anfangspunkt.setGeschwindigkeitHoch();
                 System.out.println("Geschwindigkeit auf :" + anfangspunkt.getGeschwindigkeit() + " erhöht.");
-                
+        
                     break;
+                    
                 case("-"):
-                anfangspunkt.setKraftrunter();
-                System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getKraft() + " gesetzt.");
+                anfangspunkt.setGeschwindigkeitRunter();
+                System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getGeschwindigkeit() + " gesetzt.");
                 anfangspunkt.getGeschwindigkeit();
                 System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                     break;
+                    
                 case("s"):
                 ball1.bewegeBall();
                     break;
+                    
                 case("f"):
                 ball1.loescheBall();
                 leinwand.wait(20);
@@ -165,15 +170,18 @@ public class Spiel
                 leinwand.wait(20);
                 zeichneSpielfeld();
                     break;
+                    
                 case("h"):
                 konsole.zeigeHilfetext();
                     break; 
+                    
                 case("q"):
                 //konsole.spielende()
                 System.out.println("Das Spiel wurde beendet. Danke fürs Spielen!");
                 System.out.println("Sie können die Konsole mit STRG+W beenden.");
                 System.exit(0);
-                    break;   
+                    break; 
+                    
                 default:
                     System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
                     konsole.zeigeHilfetext();
