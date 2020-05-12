@@ -14,7 +14,7 @@ import java.awt.geom.*;
  */
 
 
-
+ 
 public class Spiel
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
@@ -76,12 +76,17 @@ public class Spiel
         int boden = 400; 
         ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand);
         ball1.zeichneBall(); 
+        
+        leinwand.setForegroundColor(Color.BLUE);
+        Punkt anfangspunkt0 = new Punkt();
+        leinwand.drawString("Anfangsgeschwindigkeit: ", 350, 450);
+        //leinwand.drawString(anfangspunkt0.getGeschwindigkeit(), 450, 450);
     }
     
       public void faerbekorb (){
+          // Korb soll bei Ballberührung gefärbt werden
         
-        
-    }; // Korb soll bei Ballberührung gefärbt werden
+    }; 
     
     
     /**
@@ -121,21 +126,31 @@ public class Spiel
         String eingabe;
         Konsole konsole = new Konsole();
         konsole.zeigeHilfetext();
+        Punkt anfangspunkt = new Punkt();
         eingabe = lesen (">");
         
         while (eingabe.length()!=0){
             switch(eingabe){
                 case("l"):
-                ball1.stossrichtungLinks();
+                anfangspunkt.setRichtunghoch();
+                System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
+                System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                     break;
                 case("r"):
-                ball1.stossrichtungRechts();
+                anfangspunkt.setRichtungrunter();
+                System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
+                System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                     break;
                 case("+"):
-                ball1.erhoeheGeschwindigkeit();
+                anfangspunkt.setKrafthoch(); 
+                System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getKraft() + " gesetzt.");
+                System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                     break;
                 case("-"):
-                ball1.reduziereGeschwindigkeit();
+                anfangspunkt.setKraftrunter();
+                System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getKraft() + " gesetzt.");
+                anfangspunkt.getGeschwindigkeit();
+                System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
                     break;
                 case("s"):
                 ball1.bewegeBall();

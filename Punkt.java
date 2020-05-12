@@ -8,8 +8,11 @@
 public class Punkt
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    int x,y;
-    float geschwindigkeit,v;
+    int xKraft;
+    int yRichtung;
+    float vGeschwindigkeit;
+    float geschwindigkeit;
+    
 
     /**
      * Konstruktor für Objekte der Klasse Punkt
@@ -17,23 +20,97 @@ public class Punkt
     public Punkt()
     {
         // Instanzvariable initialisieren
-        x = 300;
-        y = 500;      
-    
+        xKraft = 100;
+        yRichtung = 200;
+        
+        vGeschwindigkeit = (int) Math.pow(xKraft,2) + (int) Math.pow(yRichtung,2);      
+        geschwindigkeit = (int) Math.sqrt(vGeschwindigkeit);
     }
-   
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void setKrafthoch()
+    {
+        // put your code here
+        this.xKraft = xKraft;
+        xKraft++;
+        
+    }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void setKraftrunter()
+    {
+        // put your code here
+        this.xKraft = xKraft;
+        xKraft--;
+    }
+
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public int getKraft()
+    {
+        // put your code here
+        return xKraft;
+    }
+
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void setRichtunghoch()
+    {
+        // put your code here
+        this.yRichtung = yRichtung;
+        yRichtung++;
+    }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void setRichtungrunter()
+    {
+        // put your code here
+        this.yRichtung = yRichtung;
+        yRichtung--;
+    }
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public int getRichtung()
+    {
+        // put your code here
+        return yRichtung;
+    }
     /**
      * Methode zur Berechnung von Geschwindigkeit (Pythagoras)
      */
-    public float setzeGeschwindigkeit (int x, int y){
+    public float getGeschwindigkeit (){
         //hier kommt die Berechnung (pythagoras)
-        v = (int) Math.pow(x,2) + (int) Math.pow(y,2);
-        geschwindigkeit = (int) Math.sqrt(v);
-        System.out.println("geschwindigkeit ist:" +geschwindigkeit);
+        vGeschwindigkeit = (int) Math.pow(xKraft,2) + (int) Math.pow(yRichtung,2);      
+        geschwindigkeit = (int) Math.sqrt(vGeschwindigkeit);
+        
         return geschwindigkeit;
     }
     
-    /**
-     * Methode für die Wurfrichtung
-     */
 }
