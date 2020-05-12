@@ -37,15 +37,15 @@ public class Konsole
         System.out.println("-------- " + "Spiel: Korbwurf" + "-----------------");
         System.out.println("-                                       -");
         System.out.println("- Bitte geben Sie ein Kommando ein! -");
-        System.out.println("- l:                 -");
-        System.out.println("- r:                 -");
-        System.out.println("- +:                 -");
-        System.out.println("- -:                 -");
-        System.out.println("- Enter:             -");
-        System.out.println("- s:                 -");
-        System.out.println("- f:                 -");
-        System.out.println("- h:                 -");
-        System.out.println("- q:                 -");
+        System.out.println("- l: Stoßrichtung dreht nach links -");
+        System.out.println("- r: Stoßrichtung dreht nach rechts -");
+        System.out.println("- +: Erhöhung der Stoßgeschwindigkeit -");
+        System.out.println("- -: Reduktion der Stoßgeschwindigkeit -");
+        System.out.println("- Enter: Der letzte Befehl wird erneut ausgeführt -");
+        System.out.println("- s: Stoß starten -");
+        System.out.println("- f: Löschen und erneut starten -");
+        System.out.println("- h: Hilfe-Text-");
+        System.out.println("- q: Spielende. Kosole kann mit STRG+W beendet werden -");
         System.out.println("-------- Viel Glück! -------");
         
     }

@@ -76,12 +76,14 @@ public class Spiel
         ball1.zeichneBall(); 
     }
     
+    public void faerbeKorb
+    
     /**
      * Lesen eines Kommandos
      * @param prompt     String, der dem Benutzer anzeigt, dass eine Eingabe erfolgen kann
      * @return String    Eingegebens Kommando mit kleinen Buchstaben, ohne führende oder folgende Leerzeichen
      */
-    private String lesen(String prompt){
+    private String lesen(String prompt){ 
         // In dieser Variable wird der eingelesene String gespeichert, der zurückgegeben wird
         String eingabe;
         
@@ -142,9 +144,10 @@ public class Spiel
                 konsole.zeigeHilfetext();
                     break; 
                 case("q"):
-                //konsole.spielende();
+                //konsole.spielende()
                 System.out.println("Das Spiel wurde beendet. Danke fürs Spielen!");
                 System.out.println("Sie können die Konsole mit STRG+W beenden.");
+                System.exit(0);
                     break;   
                 default:
                     System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
