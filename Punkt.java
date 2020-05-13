@@ -12,6 +12,7 @@ public class Punkt
     double yPunkt;
     int geschwindigkeit;
     int wurfrichtung;
+    ArrayList<Integer> geschwindigkeiten = new ArrayList<Integer>(50);
 
     /**
      * Konstruktor für Objekte der Klasse Punkt
@@ -21,20 +22,19 @@ public class Punkt
         // Instanzvariable initialisieren
         geschwindigkeit = 100;
         wurfrichtung = 30;
-        
     }
     
     /**
      * Methode zuum Erstellen & Füllen eines Arrays mit den Geschwindigkeiten
      */
-    public void arrayGeschwindigkeiten()
+    public int arrayGeschwindigkeiten()
     {
-        ArrayList<Integer> geschwindigkeiten = new ArrayList<Integer>();
-        for (int i=0; i<=50;i++)
+        for (int i=0; i<=50 ;i++)
         {
             Integer geschwindigkeit = new Integer(0+10*i);
             geschwindigkeiten.add(geschwindigkeit);
         }
+        return geschwindigkeit;
     }
   
     /**
@@ -45,7 +45,7 @@ public class Punkt
     {
         int winkel;
         ArrayList<Integer> wurfrichtungen = new ArrayList<Integer>();
-        for (int i=0; i<=36;i++)
+        for (int i=0; i<=36 ;i++)
         {
             winkel = new Integer(0+5*i);
             wurfrichtungen.add(winkel);
@@ -82,8 +82,8 @@ public class Punkt
     public void setGeschwindigkeitHoch()
     {
         // put your code here
-       this.geschwindigkeit = geschwindigkeit;
-       geschwindigkeit++;
+        this.geschwindigkeit = geschwindigkeit;
+        geschwindigkeit++;
     }
     
     /**
@@ -97,6 +97,18 @@ public class Punkt
         // put your code here
        this.geschwindigkeit = geschwindigkeit;
        geschwindigkeit--;
+    }
+    
+    /**
+     * Gib eine Geschwinigkeit aus der Liste auf die Konsole aus.
+     * @param i  der Intex des Mitarbeiters, deren Name ausgegebe werden soll
+     */
+    public void geschwindigkeitAusgeben()
+    {
+        for(int i=0; i< geschwindigkeiten.size(); i++){
+          geschwindigkeiten.get(i);
+          System.out.println(geschwindigkeit);
+        }
     }
 
     /**
