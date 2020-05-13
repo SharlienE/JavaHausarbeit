@@ -12,7 +12,7 @@ public class Punkt
     double yPunkt;
     int geschwindigkeit;
     int wurfrichtung;
-    ArrayList<Integer> geschwindigkeiten = new ArrayList<Integer>(50);
+    ArrayList<Integer> geschwindigkeiten = new ArrayList<Integer>();
 
     /**
      * Konstruktor für Objekte der Klasse Punkt
@@ -27,14 +27,14 @@ public class Punkt
     /**
      * Methode zuum Erstellen & Füllen eines Arrays mit den Geschwindigkeiten
      */
-    public int arrayGeschwindigkeiten()
+    public void arrayGeschwindigkeiten()
     {
         for (int i=0; i<=50 ;i++)
         {
             Integer geschwindigkeit = new Integer(0+10*i);
             geschwindigkeiten.add(geschwindigkeit);
         }
-        return geschwindigkeit;
+        System.out.println(geschwindigkeiten.get(5));
     }
   
     /**
@@ -50,6 +50,12 @@ public class Punkt
             winkel = new Integer(0+5*i);
             wurfrichtungen.add(winkel);
         }
+    }
+    
+    public void gebeGeschwindigkeit()
+    {
+        System.out.println(geschwindigkeiten.get(5));
+        
     }
 
     /**
