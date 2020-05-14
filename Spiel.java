@@ -20,8 +20,7 @@ public class Spiel
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private Canvas leinwand;
     private Ball ball1;
-    private int xPosition; // aktuelle xPosition des Balls
-    private int yPosition; // aktuelle yPosition des Balls
+    private Wurf wurf; 
     
     private String defaultprompt = ">";
     private Scanner scanner = new Scanner(System.in);
@@ -62,13 +61,13 @@ public class Spiel
         leinwand.setForegroundColor(Color.BLUE);
         leinwand.drawString("Spiel: Korbwurf", 220, 20);
         leinwand.drawLine(0,0,600,0);
-        leinwand.setForegroundColor(Color.BLUE);
+        //leinwand.setForegroundColor(Color.BLUE);
         leinwand.drawLine(600,0,600,400);
-        leinwand.setForegroundColor(Color.BLUE);
+        //leinwand.setForegroundColor(Color.BLUE);
         leinwand.drawLine(600,400,0,400);
-        leinwand.setForegroundColor(Color.BLUE);
+        //leinwand.setForegroundColor(Color.BLUE);
         leinwand.drawLine(0,400,0,0);
-        leinwand.setForegroundColor(Color.BLUE);
+        //leinwand.setForegroundColor(Color.BLUE);
         
         Rectangle korb = new Rectangle(0,400,100,20);
         leinwand.fill(korb);
@@ -77,9 +76,11 @@ public class Spiel
         ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand);
         ball1.zeichneBall(); 
         
+        wurf = new Wurf(); 
+        
         leinwand.setForegroundColor(Color.BLUE);
         Punkt anfangspunkt0 = new Punkt();
-        leinwand.drawString("Anfangsgeschwindigkeit: ", 350, 450);
+        leinwand.drawString("Anfangsgeschwindigkeit: " + wurf.wiegroßistV(), 350, 450); //v 
         //leinwand.drawString(anfangspunkt0.getGeschwindigkeit(), 450, 450);
     }
     
@@ -132,35 +133,44 @@ public class Spiel
         while (eingabe.length()!=0){
             switch(eingabe){
                 case("l"):
-                anfangspunkt.setRichtungHoch();
-                System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
-                System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
-                    break;
+                //anfangspunkt.setRichtungHoch();
+                //System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
+                //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
+                   
+                //yGeschwindigkeit wird geringer.
+                break;
                     
                 case("r"):
-                anfangspunkt.setRichtungRunter();
-                System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
-                System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
-                    break;
+                //anfangspunkt.setRichtungRunter();
+                //System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
+                //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
+                   
+                //yGeschwindigkeit wird höher.
+                break;
                     
                 case("+"):
                 //anfangspunkt.setKrafthoch(); 
                 //System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getKraft() + " gesetzt.");
                 //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
-                anfangspunkt.setGeschwindigkeitHoch();
-                System.out.println("Geschwindigkeit auf :" + anfangspunkt.getGeschwindigkeit() + " erhöht.");
-        
+                //anfangspunkt.setGeschwindigkeitHoch();
+                //System.out.println("Geschwindigkeit auf :" + anfangspunkt.getGeschwindigkeit() + " erhöht.");
+                
+                // wiegroßistv()
+                // v++;
                     break;
                     
                 case("-"):
-                anfangspunkt.setGeschwindigkeitRunter();
-                System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getGeschwindigkeit() + " gesetzt.");
-                anfangspunkt.getGeschwindigkeit();
-                System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
-                    break;
+                //anfangspunkt.setGeschwindigkeitRunter();
+                //System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getGeschwindigkeit() + " gesetzt.");
+                //anfangspunkt.getGeschwindigkeit();
+                //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
+                    
+                // wiegroßistv()
+                // v--;
+                break;
                     
                 case("s"):
-                ball1.bewegeBall();
+                springenLassen();
                     break;
                     
                 case("f"):
@@ -191,5 +201,33 @@ public class Spiel
         
         }
     }
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void springenLassen()
+    {
+        int boden = 400; 
+        
+        ball1.bewegen();
+        
+        boolean fertig =  false;
+        while(!fertig) { 
+            leinwand.wait(50);           // kurze Pause
+            ball1.bewegen();
+            // Stoppen, wenn die Bälle weit genug gesprungen sind.
+            if(ball1.gibYposition() >= boden - ball1.durchmesser) {
+                fertig = true; 
+                leinwand.setForegroundColor(Color.RED);
+                Rectangle korbFailed = new Rectangle(0,400,100,20);
+                leinwand.fill(korbFailed);
+            }
+        }
+        
+               
+    }
+    
 
 }

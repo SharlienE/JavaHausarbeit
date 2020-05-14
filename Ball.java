@@ -26,19 +26,20 @@ import java.awt.geom.*;
  public class Ball
     {
        // Instanzvariablen
-       private static final int gravitation = 3; //Gravitationskraft
+       private static final int gravitation = 10; //Gravitationskraft
                 
        private Ellipse2D.Double ball; // Definition einer Ellipse mit doppelter Genauigkeit
        private Color farbe; // Farbe des Balls
-       private int durchmesser; // Durchmesser des Balls
+       public int durchmesser; // Durchmesser des Balls
        private int xPosition; // aktuelle xPosition des Balls
        private int yPosition; // aktuelle yPosition des Balls
-       private final int bodenhoehe; // = 400???; // y-Position des Bodens
-       // private final int deckenhoehe; // =0???; // y-Position der Decke
+       private final int bodenhoehe; 
+       
        private Canvas leinwand; 
-       private int yGeschwindigkeit = 1; // anfängliche Abwärtsgeschwindigkeit
-       private int xGeschwindigkeit = 1; // ???
-       private int wurfrichtung; //???
+       public int yGeschwindigkeit = -60; // = vy = wurfrichtung
+       public int xGeschwindigkeit = -10; // = vx = gleich
+       
+       private Wurf wurf = new Wurf(); 
                 
                 
         /**
@@ -47,16 +48,16 @@ import java.awt.geom.*;
         
         * 
         */
-        public Ball(int xPos, int yPos, int durchmesserball, Color ballfarbe, 
-                    int bodenposition, Canvas leinwandBall)
+        public Ball(int xPos, int yPos, int balldurchmesser, Color ballfarbe, 
+                    int bodenPosition, Canvas leinwandBall)
          {
            //"zeichengrund" = leinwandBall
                     
            xPosition = xPos;
            yPosition = yPos;
            farbe = ballfarbe;
-           durchmesser = durchmesserball;
-           bodenhoehe = bodenposition; // ???
+           durchmesser = balldurchmesser;
+           bodenhoehe = bodenPosition;
            leinwand = leinwandBall;
            //geschw = yGeschwindigkeit;
            // wurfrichtung = r; // selbst hinzugefügt; ???
@@ -103,8 +104,9 @@ import java.awt.geom.*;
         // Neue Position berechnen.
         //punkt1.setzeGeschwindigkeit(x, y) += gravitation; 
         
-        yPosition += yGeschwindigkeit;
-        xPosition += -2; //veränderbar??
+        yGeschwindigkeit = yGeschwindigkeit + gravitation;
+        yPosition = yPosition + yGeschwindigkeit;
+        xPosition = xPosition + xGeschwindigkeit; // fest?
         
         // Prüfen, ob der Boden erreicht ist.
         if(yPosition >= (bodenhoehe - durchmesser) && yGeschwindigkeit>0) {
@@ -112,7 +114,7 @@ import java.awt.geom.*;
             yGeschwindigkeit = -yGeschwindigkeit; 
             
         }
-        
+         
             // An der neuen Position erneut zeichnen.
             zeichneBall();
             
@@ -175,9 +177,9 @@ import java.awt.geom.*;
      * @param   xPos
      * @return  xPos
      */
-    public int gibXposition (int xPos)
+    public int gibXposition ()
     {
-        return xPos;
+        return xPosition;
     }
 
     /**
@@ -186,9 +188,9 @@ import java.awt.geom.*;
      * @param   yPos
      * @return  yPos
      */
-    public int gibYposition (int yPos)
+    public int gibYposition ()
     {
-        return yPos;
+        return yPosition;
     }
 
 }   
