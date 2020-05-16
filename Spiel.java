@@ -74,7 +74,7 @@ public class Spiel
         
         int boden = 400; 
         ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand);
-        ball1.zeichneBall(); 
+        ball1.zeichneBall();  
         
         wurf = new Wurf(); 
         

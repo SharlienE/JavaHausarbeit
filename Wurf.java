@@ -12,6 +12,8 @@ public class Wurf
     public int yGeschwindigkeit;
     public int xGeschwindigkeit;
     public float v;
+    public float alpha;
+    
 
     /**
      * Constructor for objects of class Wurf
@@ -20,6 +22,7 @@ public class Wurf
     {
         // initialise instance variables
         xGeschwindigkeit = -10;
+        // yGeschwindigkeit = -60;
     }
 
     /**
@@ -99,6 +102,19 @@ public class Wurf
         
         //berechneGeschwindigkeit();
         return v;
+    }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public float berechneAlpha()
+    {
+        // put your code here
+        //alpha = Math.asin(getxGeschwindigkeit() / getyGeschwindigkeit());
+        return alpha;
     }
 
 }

@@ -36,7 +36,7 @@ import java.awt.geom.*;
        private final int bodenhoehe; 
        
        private Canvas leinwand; 
-       public int yGeschwindigkeit = -60; // = vy = wurfrichtung
+       public int yGeschwindigkeit = -60; // = vy = auch gleich (nur zu Anfang)
        public int xGeschwindigkeit = -10; // = vx = gleich
        
        private Wurf wurf = new Wurf(); 
@@ -59,10 +59,7 @@ import java.awt.geom.*;
            durchmesser = balldurchmesser;
            bodenhoehe = bodenPosition;
            leinwand = leinwandBall;
-           //geschw = yGeschwindigkeit;
-           // wurfrichtung = r; // selbst hinzugefügt; ???
-           // Hat Ball auch Attribute Geschwindigkeit / Stoßrichtung??
-           // --> Bezug zu Scannnereingabe
+        
          }
          
     /**
@@ -94,19 +91,20 @@ import java.awt.geom.*;
      */
     public void bewegen()
     {
-        //wenn eingabe="s"
-        //Punkt punkt1 = new Punkt();
+        // aus springenLassen aufrufen (Main)
+       
         
         
         // An der aktuellen Position von der Leinwand entfernen.
         loescheBall();
             
         // Neue Position berechnen.
-        //punkt1.setzeGeschwindigkeit(x, y) += gravitation; 
+        
         
         yGeschwindigkeit = yGeschwindigkeit + gravitation;
         yPosition = yPosition + yGeschwindigkeit;
         xPosition = xPosition + xGeschwindigkeit; // fest?
+        // Aus Wurf "getten"
         
         // Prüfen, ob der Boden erreicht ist.
         if(yPosition >= (bodenhoehe - durchmesser) && yGeschwindigkeit>0) {
@@ -119,17 +117,7 @@ import java.awt.geom.*;
             zeichneBall();
             
             
-        //if (yPosition == bodenhoehe && xPosition >=60){
-           //zeichneBall();
-           // korb = Color rot ???
-           // Methode "ballAufBoden"
-         
-        //}
-        //if (yPosition == bodenhoehe && xPosition < 60) {
-            //zeichneBall();
-            // korb = Color grün ???
-            // Methode "ballImKorb"
-            
+                    
         //}
         // if (yPosition == deckenhoehe || xPosition = 0 || xPosition == 600) {
         // Abprall abprall = new Abprall ();
@@ -144,7 +132,7 @@ import java.awt.geom.*;
      */
     public void bewegeBall()
     {
-        //wenn eingabe="s"
+        // eigentlich unnötig, könnte raus später
         int boden  = 400;
         
         leinwand.setVisible(true);
