@@ -181,16 +181,29 @@ public class Wurf
     //Funktioniert
     public void werfen()
     {
+      int boden = 400;
       gespeicherterWinkel = winkel;
+      //bewegen();
       boolean fertig = false;
       while (!fertig)
       {
           leinwand.wait(50);// kurze Verzögerung, damit man eine Animation sieht
           bewegen();
+          if(ball1.gibYPosition() >= boden - ball1.durchmesser) {
+                fertig = true; 
+                leinwand.setForegroundColor(Color.RED);
+                Rectangle korbFailed = new Rectangle(0,400,100,20);
+                leinwand.fill(korbFailed);
+            }
+          
+          
           // Überprüfung, ob getroffen wurde
           if (ball1.gibXPosition() <= 60 && ball1.gibYPosition() >=360)
           {
             fertig = true;
+            leinwand.setForegroundColor(Color.GREEN);
+                Rectangle korbSuccess = new Rectangle(0,400,100,20);
+                leinwand.fill(korbSuccess);
           }
                             
           //Prüfung & Berechnung der Decken Abpraller
