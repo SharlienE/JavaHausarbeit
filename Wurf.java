@@ -217,6 +217,7 @@ public class Wurf
                 leinwand.setForegroundColor(Color.RED);
                 Rectangle korbFailed = new Rectangle(0,400,100,20);
                 leinwand.fill(korbFailed);
+                System.out.println("Schade, versuchen Sie es noch einmal!");
             }
           
           
@@ -227,6 +228,7 @@ public class Wurf
             leinwand.setForegroundColor(Color.GREEN);
                 Rectangle korbSuccess = new Rectangle(0,400,100,20);
                 leinwand.fill(korbSuccess);
+                System.out.println("Glückwunsch, Treffer!");
           }
                             
           //Prüfung & Berechnung der Decken Abpraller
