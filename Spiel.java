@@ -61,7 +61,7 @@ public class Spiel
         ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand); 
         ball1.zeichneBall(); 
         
-        wurf1 = new Wurf(540, 400, 399, 259, Color.green, leinwand, ball1);
+        wurf1 = new Wurf(520, 400, 399, 259, Color.green, leinwand, ball1);
         wurf1.wurfrichtungZeichnen();
         wurf1.geschwindigkeitSchreiben();
         
@@ -129,6 +129,7 @@ public class Spiel
                 case("s"):
                 //Ball wird geworfen
                 wurf1.werfen();
+                // Alles beenden
                 break;
                     
                 case("f"):

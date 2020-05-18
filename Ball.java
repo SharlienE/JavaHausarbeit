@@ -17,7 +17,7 @@ public class Ball
 {
     private Ellipse2D.Double kreis;
     private Color farbe;
-    public int durchmesser;
+    public int durchmesser = 40;
     public int xPosition;
     public int yPosition;
     public Canvas leinwand;

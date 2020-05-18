@@ -20,10 +20,12 @@ public class Wurf
     private Color farbe;
     private Ball ball1;
     public Canvas leinwand;
-    private int gravitation = 5;  // Einfluss der Gravitation
+    private int gravitation = 2;  // Einfluss der Gravitation
     public int geschwindigkeit = 200;
     public int winkel = 45;
     private int gespeicherterWinkel;
+    private int wandrechts = 600; 
+    private int wandlinks = 0;
     private boolean deckeGetroffen = false;
     private boolean wandGetroffen = false;
 
@@ -44,30 +46,29 @@ public class Wurf
      
     public void wurfrichtungZeichnen()
     {    //die Wurflinie, die vom Nutzer gesehen wird, wird gezeichnet 
-        leinwand.setForegroundColor(farbe); // Wurflinienfarbe wird gewählt
+        leinwand.setForegroundColor(farbe); // Wurflinienfarbe wird gewählt - Grün
         leinwand.drawLine(xAnfang, yAnfang, xPunkt, yPunkt);  
     }
   
     public void geschwindigkeitSchreiben()
-    //Di Geschwindigkeitsanzeige wird erstellt
+    //Die Geschwindigkeitsanzeige wird erstellt
     {
         leinwand.setForegroundColor(Color.black);
-        leinwand.drawString("Anfangsgeschwindigkeit: " + (geschwindigkeit/10), 
-            xAnfang - 140, yAnfang + 20);
+        leinwand.drawString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/100), 350, 450);
     }
     
     //Funktioniert
     public void geschwindigkeitLöschen()
     //Die Geschwindigkeitsanzeige wird gelöscht
     {
-       leinwand.eraseString("Anfangsgeschwindigkeit: " + (geschwindigkeit/10),  
-        xAnfang - 140, yAnfang + 20); 
+       leinwand.eraseString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/100), 350, 450);
     }
     
     public void geschwindigkeitErhöhen()
      //Hier wird nach der Eingabe von + die Geschwindigkeit erhöht
     {
-       if(geschwindigkeit < 500){
+       //geschwindigkeitSchreiben()
+        if(geschwindigkeit < 500){
            geschwindigkeitLöschen();
            geschwindigkeit += 10;
            geschwindigkeitSchreiben();
@@ -83,6 +84,7 @@ public class Wurf
        else {
            System.out.println("Maximale Geschwindigkeit erreicht");
        }
+       //geschwindigkeitLöschen();
     }
     
     public void geschwindigkeitSenken()
@@ -121,6 +123,7 @@ public class Wurf
         } else  {
             System.out.println("Weiter nach rechts geht es nicht");
         }
+        
     }   
     
     //über 90 und bis 5 anpassen
@@ -151,25 +154,33 @@ public class Wurf
         ball1.loescheBall();
         // Neue Position berechnen.
         
-          
+        
             
         
             //Überprüfung, ob Decke getroffen wurde
         if(deckeGetroffen == true){
             winkel += 180;      // wenn der Ball an der Decke abprallt, wird die Steigung gespiegelt. Faür erhält der sinus winkel plus 180°
+            leinwand.setFont(new Font("helvetica", Font.BOLD, 14));
+            leinwand.setForegroundColor(Color.BLUE);
+            leinwand.drawString("Spiel: Korbwurf", 220, 20);
+            leinwand.drawLine(0,0,600,0);
         } 
             //Überprüfung, ob es ein Seitenabpraller ist
         if(wandGetroffen == true){
             //Überprüfung, ob links abprallt
-             if(ball1.gibXPosition() <= 40){
+             if(ball1.gibXPosition() <= (wandlinks + ball1.durchmesser)){
                     winkel += 90;
+                    leinwand.setForegroundColor(Color.BLUE);
+                    leinwand.drawLine(0,400,0,0);
                 }
             //Überprüfung, ob rechts abprallt
-             if (ball1.gibXPosition() >= 560){
+             if (ball1.gibXPosition() >= (wandrechts - ball1.durchmesser)){
                     winkel -= 90;
+                    leinwand.setForegroundColor(Color.BLUE);
+                    leinwand.drawLine(600,0,600,400);
                 }
         }
-         gravitation += 5;
+        gravitation += 2;
         double winkel1 = ((winkel*Math.PI)/180);
         double yÄnderung = (Math.sin(winkel1) * (geschwindigkeit/5)); 
         double xÄnderung = (Math.cos(winkel1) * (geschwindigkeit/5));       
@@ -209,7 +220,7 @@ public class Wurf
             }
           
           
-          // Überprüfung, ob getroffen wurde
+          // Überprüfung, ob Korb getroffen wurde
           if (ball1.gibXPosition() <= 60 && ball1.gibYPosition() >=360)
           {
             fertig = true;
@@ -224,7 +235,7 @@ public class Wurf
             deckeGetroffen = true;
           }
                            
-          if((ball1.gibXPosition() <= 0 || ball1.gibXPosition() >= 600) && geschwindigkeit > 0)
+          if((ball1.gibXPosition() <= 0 || ball1.gibXPosition() >= 560) && geschwindigkeit > 0)
           {
             wandGetroffen = true;
           }
@@ -240,7 +251,7 @@ public class Wurf
     public void restart()
         {
         winkel = gespeicherterWinkel;
-        gravitation = 5;
+        //gravitation = 5;
     }
     
     public int gibGeschwindigkeit()

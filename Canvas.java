@@ -247,6 +247,13 @@ public class Canvas
         canvas.repaint();
     }
     
+    /**
+     * Erases a line on the Canvas.
+     * @param  x1   x co-ordinate of start of line 
+     * @param  y1   y co-ordinate of start of line 
+     * @param  x2   x co-ordinate of end of line 
+     * @param  y2   y co-ordinate of end of line 
+     */
     public void eraseLine(int x1, int y1, int x2, int y2)
     {
       Color original = graphic.getColor();
