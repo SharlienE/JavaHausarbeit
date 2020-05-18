@@ -2,26 +2,18 @@ import java.util.Scanner;
 import java.awt.*;
 import java.awt.geom.*;
 /**
- * Klasse Spiel
- * Dies ist die Main-Klasse des Programms "Korbwurf"
+ * Beschreiben Sie hier die Klasse Spiel.
  * 
- * @author Jan Rietmüller (JR)
- * @author Sharlien Ehlers (SE)
- * @author Ann-Kathrin Siekmeier (AS)
- * 
- * Zenturie: W18b
- * @version 09052020
+ * @author (Ihr Name) 
+ * @version (eine Versionsnummer oder ein Datum)
  */
-
-
- 
 public class Spiel
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private Canvas leinwand;
-    private Ball ball1;
-    private Wurf wurf; 
-    
+    public Ball ball1;
+    public Wurf wurf1;
+
     private String defaultprompt = ">";
     private Scanner scanner = new Scanner(System.in);
     /**
@@ -29,34 +21,27 @@ public class Spiel
      */
     public Spiel()
     {
-        // Instanzvariable initialisieren
-        leinwand = new Canvas("Korbwurf",650, 500);
+        leinwand = new Canvas("Korbwurf",650, 500, Color.white);
         leinwand.setVisible(true);
         leinwand.setSize(650, 500);
     }
-    
+
     /**
      * Klassenmethode zum Aufruf des Spiels
      * 
      * @param  String[] Mögliche Parameter (hier keine)
      */
     public static void main(String[] args){
-
         // Instantiierung der Klasse
         Spiel neuesSpiel = new Spiel();
         neuesSpiel.spielen();
-        
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Methode zum Zeichnen des Spielfeldes
      */
     public void zeichneSpielfeld()
     {
-        
         leinwand.setFont(new Font("helvetica", Font.BOLD, 14));
         leinwand.setForegroundColor(Color.BLUE);
         leinwand.drawString("Spiel: Korbwurf", 220, 20);
@@ -73,27 +58,20 @@ public class Spiel
         leinwand.fill(korb);
         
         int boden = 400; 
-        ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand);
+        ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand); 
         ball1.zeichneBall(); 
         
-        wurf = new Wurf(); 
+        wurf1 = new Wurf(540, 400, 399, 259, Color.green, leinwand, ball1);
+        wurf1.wurfrichtungZeichnen();
+        wurf1.geschwindigkeitSchreiben();
         
         leinwand.setForegroundColor(Color.BLUE);
-        Punkt anfangspunkt0 = new Punkt();
-        leinwand.drawString("Anfangsgeschwindigkeit: " + wurf.wiegroßistV(), 350, 450); //v 
-        //leinwand.drawString(anfangspunkt0.getGeschwindigkeit(), 450, 450);
+
+        //leinwand.drawString("Anfangsgeschwindigkeit: " + wurf.wiegroßistV(), 350, 450); //v 
     }
     
-      public void faerbekorb (){
-          // Korb soll bei Ballberührung gefärbt werden
-        
-    }; 
-    
-    
     /**
-     * Lesen eines Kommandos
-     * @param prompt     String, der dem Benutzer anzeigt, dass eine Eingabe erfolgen kann
-     * @return String    Eingegebens Kommando mit kleinen Buchstaben, ohne führende oder folgende Leerzeichen
+     * Lesen eines Kommandos, welcher in der Konsole eingegeben wurde 
      */
    
      private String lesen (String prompt){ 
@@ -115,10 +93,7 @@ public class Spiel
     }
     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Durchführung der Kommandos
      */
     private void spielen()
     {
@@ -127,53 +102,38 @@ public class Spiel
         String eingabe;
         Konsole konsole = new Konsole();
         konsole.zeigeHilfetext();
-        Punkt anfangspunkt = new Punkt();
         eingabe = lesen (">");
         
         while (eingabe.length()!=0){
             switch(eingabe){
                 case("l"):
-                //anfangspunkt.setRichtungHoch();
-                //System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
-                //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
-                   
-                //yGeschwindigkeit wird geringer.
+                //Stoßrichtung dreht nach links um eine Einheit
+                wurf1.wurfrichtungLinks();
                 break;
                     
                 case("r"):
-                //anfangspunkt.setRichtungRunter();
-                //System.out.println("Okay! Die Richtung wurde auf " + anfangspunkt.getRichtung() + " geändert.");
-                //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
-                   
-                //yGeschwindigkeit wird höher.
+                //Stoßrichtung dret nach rechts um eine Einheit
+                wurf1.wurfrichtungRechts();
                 break;
                     
                 case("+"):
-                //anfangspunkt.setKrafthoch(); 
-                //System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getKraft() + " gesetzt.");
-                //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
-                //anfangspunkt.setGeschwindigkeitHoch();
-                //System.out.println("Geschwindigkeit auf :" + anfangspunkt.getGeschwindigkeit() + " erhöht.");
-                
-                // wiegroßistv()
-                // v++;
-                    break;
+                //Anfangsgeschwindigkeit wird um eine Einheit erhöht
+                wurf1.geschwindigkeitErhöhen();
+                break;
                     
                 case("-"):
-                //anfangspunkt.setGeschwindigkeitRunter();
-                //System.out.println("Done! Die Kraft wurde auf " + anfangspunkt.getGeschwindigkeit() + " gesetzt.");
-                //anfangspunkt.getGeschwindigkeit();
-                //System.out.println("Geschwindigkeit bei: " + anfangspunkt.getGeschwindigkeit());
-                    
-                // wiegroßistv()
-                // v--;
+                //Anfangsgeschwindigkeit wird um eine Einheit reduziert
+                wurf1.geschwindigkeitSenken();
                 break;
                     
                 case("s"):
-                springenLassen();
-                    break;
+                //Ball wird geworfen
+                wurf1.werfen();
+                break;
                     
                 case("f"):
+                //löschen und erneutes Zeichnen des Spielfeldes.
+                //der Ball ist wieder am Startpunkt.
                 ball1.loescheBall();
                 leinwand.wait(20);
                 leinwand.erase();
@@ -182,52 +142,25 @@ public class Spiel
                     break;
                     
                 case("h"):
+                //Ausgabe des Hilfetextes
                 konsole.zeigeHilfetext();
                     break; 
                     
                 case("q"):
-                //konsole.spielende()
+                //Spielende
                 System.out.println("Das Spiel wurde beendet. Danke fürs Spielen!");
                 System.out.println("Sie können die Konsole mit STRG+W beenden.");
                 System.exit(0);
                     break; 
                     
                 default:
-                    System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
-                    konsole.zeigeHilfetext();
+                System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
+                konsole.zeigeHilfetext();
                     break;
             }
-                eingabe = lesen(">");
+            eingabe = lesen(">");
         
         }
     }
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public void springenLassen()
-    {
-        int boden = 400; 
-        
-        ball1.bewegen();
-        
-        boolean fertig =  false;
-        while(!fertig) { 
-            leinwand.wait(50);           // kurze Pause
-            ball1.bewegen();
-            // Stoppen, wenn die Bälle weit genug gesprungen sind.
-            if(ball1.gibYposition() >= boden - ball1.durchmesser) {
-                fertig = true; 
-                leinwand.setForegroundColor(Color.RED);
-                Rectangle korbFailed = new Rectangle(0,400,100,20);
-                leinwand.fill(korbFailed);
-            }
-        }
-        
-               
-    }
-    
 
 }

@@ -1,196 +1,82 @@
 import java.awt.*;
 import java.awt.geom.*;
-            
- /**
-  * Beschreiben Sie hier die Klasse Ball.
-  * Inhalte dieser Klasse:
-  *      -Einlesen der Parameter (Geschwindigkeit, Wurfrichtung) aus der Klasse Konsole
-  *      -Berechnung der parabelförmigen Funktion in einer Schleife
-  *          (schiefer Wurf: Funktion, google)
-  *      -x/y Koordinaten an Klasse Leinwand geben
-  *      -Erzeugung vom Objekt Ball
-  *      -Funktion für den Korb (was passiert beim Treffer/ daneben werfen)
-  *      -wenn der Ball eine Wand berührt, führe die Klasse elastischer Stoß aus
-  *
-  * Die Klasse Ball implementiert grafisch Bälle, die einer Gravitationskraft
-  * unterliegen. Ein Ball kann bewegt werden. 
-  * 
-  *
-  *
-  * 
-  * @author AS 
-  * @version 03052020
-  */
-            
-         
- public class Ball
-    {
-       // Instanzvariablen
-       private static final int gravitation = 10; //Gravitationskraft
-                
-       private Ellipse2D.Double ball; // Definition einer Ellipse mit doppelter Genauigkeit
-       private Color farbe; // Farbe des Balls
-       public int durchmesser; // Durchmesser des Balls
-       private int xPosition; // aktuelle xPosition des Balls
-       private int yPosition; // aktuelle yPosition des Balls
-       private final int bodenhoehe; 
-       
-       private Canvas leinwand; 
-       public int yGeschwindigkeit = -60; // = vy = wurfrichtung
-       public int xGeschwindigkeit = -10; // = vx = gleich
-       
-       private Wurf wurf = new Wurf(); 
-                
-                
-        /**
-        * Konstruktor für Objekte der Klasse Ball
-        * 
+
+/**
+ * Die Klasse Ball implementiert grafisch Bälle, die der Schwerkraft
+ * unterworfen sind. Ein Ball kann bewegt werden. Die Bedingungen der Bewegung
+ * werden dabei vom Ball selbst kontrolliert. Er fällt abwärts und beschleunigt
+ * aufgrund der Schwerkraft. Er prallt ab, wenn er an eine Wand oder der Decke auftrifft.
+ * 
+ * Diese Bewegung kann simuliert werden, indem wiederholt die Operation
+ * "bewegen" aufgerufen wird.
+ * 
+ *
+ */
+
+public class Ball
+{
+    private Ellipse2D.Double kreis;
+    private Color farbe;
+    public int durchmesser;
+    public int xPosition;
+    public int yPosition;
+    public Canvas leinwand;
+    private final int bodenhoehe; 
+    private int xAnfang;
+    private int yAnfang;
         
-        * 
-        */
-        public Ball(int xPos, int yPos, int balldurchmesser, Color ballfarbe, 
-                    int bodenPosition, Canvas leinwandBall)
-         {
-           //"zeichengrund" = leinwandBall
-                    
-           xPosition = xPos;
-           yPosition = yPos;
-           farbe = ballfarbe;
-           durchmesser = balldurchmesser;
-           bodenhoehe = bodenPosition;
-           leinwand = leinwandBall;
-           //geschw = yGeschwindigkeit;
-           // wurfrichtung = r; // selbst hinzugefügt; ???
-           // Hat Ball auch Attribute Geschwindigkeit / Stoßrichtung??
-           // --> Bezug zu Scannnereingabe
-         }
-         
     /**
-    * Zeichne den Ball an der aktuellen Position auf der Leinwand. 
-    *
-    * 
-    */
+     * Konstruktor für Exemplare von Ball
+     *
+     * @param xPos  die horizontale Koordinate des Balles
+     * @param yPos  die vertikale Koordinate des Balles
+     * @param balldurchmesser  der Durchmesser des Balles (in Bildschirmpunkten)
+     * @param ballfarbe  die Farbe des Balles
+     * @param bodenPosition  die y-Position des Bodens (wo der Ball aufspringt)
+     * @param zeichengrund die Leinwand, auf der dieser Ball gezeichnet wird
+     */
+    public Ball(int xPos, int yPos, int balldurchmesser, Color ballfarbe,
+                int bodenPosition, Canvas leinwand)
+    {
+        xPosition = xPos;
+        yPosition = yPos;
+        farbe = ballfarbe;
+        durchmesser = balldurchmesser;
+        bodenhoehe = bodenPosition;
+        this.leinwand = leinwand;
+    }
+
+    /**
+     * Zeichne diesen Ball an der aktuellen Position auf die Leinwand.
+     **/
     public void zeichneBall()
     {
         leinwand.setForegroundColor(farbe);
         leinwand.fillCircle(xPosition, yPosition, durchmesser);
     }
-    
+
     /**
-     * Lösche den Ball an der aktuellen Position auf der Leinwand.
-     *
-     * 
-     */
+     * Lösche diesen Ball an seiner aktuellen Position.
+     **/
     public void loescheBall()
     {
         leinwand.eraseCircle(xPosition, yPosition, durchmesser);
-    }
-    
+    }    
+     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Liefere die horizontale Position dieses Balls.
      */
-    public void bewegen()
-    {
-        //wenn eingabe="s"
-        //Punkt punkt1 = new Punkt();
-        
-        
-        // An der aktuellen Position von der Leinwand entfernen.
-        loescheBall();
-            
-        // Neue Position berechnen.
-        //punkt1.setzeGeschwindigkeit(x, y) += gravitation; 
-        
-        yGeschwindigkeit = yGeschwindigkeit + gravitation;
-        yPosition = yPosition + yGeschwindigkeit;
-        xPosition = xPosition + xGeschwindigkeit; // fest?
-        
-        // Prüfen, ob der Boden erreicht ist.
-        if(yPosition >= (bodenhoehe - durchmesser) && yGeschwindigkeit>0) {
-            yPosition = (int) (bodenhoehe - durchmesser);
-            yGeschwindigkeit = -yGeschwindigkeit; 
-            
-        }
-         
-            // An der neuen Position erneut zeichnen.
-            zeichneBall();
-            
-            
-        //if (yPosition == bodenhoehe && xPosition >=60){
-           //zeichneBall();
-           // korb = Color rot ???
-           // Methode "ballAufBoden"
-         
-        //}
-        //if (yPosition == bodenhoehe && xPosition < 60) {
-            //zeichneBall();
-            // korb = Color grün ???
-            // Methode "ballImKorb"
-            
-        //}
-        // if (yPosition == deckenhoehe || xPosition = 0 || xPosition == 600) {
-        // Abprall abprall = new Abprall ();
-        // abprall.abstoßen();
-        //}
-    }
-
-    /**
-     * Bewege den Ball 
-     *
-     * 
-     */
-    public void bewegeBall()
-    {
-        //wenn eingabe="s"
-        int boden  = 400;
-        
-        leinwand.setVisible(true);
-        
-        boolean fertig =  false;
-        while(!fertig) {
-            leinwand.wait(50);           // kurze Pause
-            bewegen();
-            
-            // Stoppen, wenn die Bälle weit genug gesprungen sind.
-            if(xPosition<=60) {
-                fertig = true;
-                //Färbe Korb grün
-            }
-            else {
-                fertig = false;
-                
-            }
-            
-        }
-        if (fertig = true && xPosition>=60){
-                //Färbe Korb rot
-            }
-        
-    }
-    
-    /**
-     * Gib die X-Position des Balls.
-     *
-     * @param   xPos
-     * @return  xPos
-     */
-    public int gibXposition ()
+    public int gibXPosition()
     {
         return xPosition;
     }
 
     /**
-     * Gib die Y-Position des Balls.
-     *
-     * @param   yPos
-     * @return  yPos
+     * Liefere die vertikale Position dieses Balls.
      */
-    public int gibYposition ()
+    public int gibYPosition()
     {
         return yPosition;
     }
-
-}   
+    
+}

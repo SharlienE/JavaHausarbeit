@@ -49,4 +49,6 @@ public class Konsole
         System.out.println("-------- Viel Glück! -------");
         
     }
+    
+    
 }

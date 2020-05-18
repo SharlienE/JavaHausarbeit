@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.*;
@@ -116,7 +115,7 @@ public class Canvas
      * Fill the internal dimensions of the given circle with the current 
      * foreground color of the canvas.
      */
-    public void fillCircle(int xPos, int yPos, int diameter)
+    public void fillCircle(double xPos, double yPos, double diameter)
     {
         Ellipse2D.Double circle = new Ellipse2D.Double(xPos, yPos, diameter, diameter);
         fill(circle);
@@ -150,7 +149,7 @@ public class Canvas
      * convenience method. A similar effect can be achieved with
      * the "erase" method.
      */
-    public void eraseCircle(int xPos, int yPos, int diameter)
+    public void eraseCircle(double xPos, double yPos, double diameter)
     {
         Ellipse2D.Double circle = new Ellipse2D.Double(xPos, yPos, diameter, diameter);
         erase(circle);
@@ -245,6 +244,15 @@ public class Canvas
     {
         graphic.drawLine(x1, y1, x2, y2);   
         canvas.repaint();
+    }
+    
+    public void eraseLine(int x1, int y1, int x2, int y2)
+    {
+      Color original = graphic.getColor();
+      graphic.setColor(backgroundColor);
+      graphic.drawLine(x1, y1, x2, y2);   
+      graphic.setColor(original);
+      canvas.repaint();
     }
 
     /**
