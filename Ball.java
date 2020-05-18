@@ -21,7 +21,7 @@ public class Ball
     public int xPosition;
     public int yPosition;
     public Canvas leinwand;
-    private final int bodenhoehe; 
+    public final int bodenhoehe; 
     private int xAnfang;
     private int yAnfang;
         

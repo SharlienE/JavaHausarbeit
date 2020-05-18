@@ -20,7 +20,7 @@ public class Wurf
     private Color farbe;
     private Ball ball1;
     public Canvas leinwand;
-    private int gravitation = 10;  // Einfluss der Gravitation
+    private int gravitation = 5;  // Einfluss der Gravitation
     public int geschwindigkeit = 200;
     public int winkel = 45;
     private int gespeicherterWinkel;
@@ -150,6 +150,11 @@ public class Wurf
     {
         ball1.loescheBall();
         // Neue Position berechnen.
+        
+          
+            
+        
+            //Überprüfung, ob Decke getroffen wurde
         if(deckeGetroffen == true){
             winkel += 180;      // wenn der Ball an der Decke abprallt, wird die Steigung gespiegelt. Faür erhält der sinus winkel plus 180°
         } 
@@ -164,7 +169,7 @@ public class Wurf
                     winkel -= 90;
                 }
         }
-        gravitation += 5;
+         gravitation += 5;
         double winkel1 = ((winkel*Math.PI)/180);
         double yÄnderung = (Math.sin(winkel1) * (geschwindigkeit/5)); 
         double xÄnderung = (Math.cos(winkel1) * (geschwindigkeit/5));       
@@ -172,6 +177,13 @@ public class Wurf
         ball1.xPosition = ball1.xPosition - (int)(xÄnderung);
         deckeGetroffen = false;   
         wandGetroffen = false;
+        // Prüfen, ob der Boden erreicht ist.
+        if(ball1.yPosition >= (ball1.bodenhoehe - ball1.durchmesser) && yÄnderung>0) {
+            ball1.yPosition = (int) (ball1.bodenhoehe - ball1.durchmesser);
+            yÄnderung = -yÄnderung; 
+            
+        }
+        
         // An der neuen Position erneut zeichnen.
         ball1.zeichneBall();
     }  
