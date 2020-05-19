@@ -3,29 +3,35 @@ import java.awt.geom.*;
 import java.lang.Math; 
 
 /**
- * Beschreiben Sie hier die Klasse Wurf.
+ * Klasse Wurf
+ * 
+ * Die Klasse Wurf implementiert grafisch Bälle, die der Schwerkraft
+ * unterworfen sind. Ein Ball kann bewegt werden. Die Bedingungen der Bewegung
+ * werden dabei vom Ball selbst kontrolliert. Er fällt abwärts und beschleunigt
+ * aufgrund der Schwerkraft. Er prallt ab, wenn er an eine Wand oder 
+ * an der Decke auftrifft.
+ * 
+ * Ein Ball kann bewegt werden, wenn der Spiele die Eingabe "s" tätigt und 
+ * somit die Methode "werfen" vom Programm aufgerufen wird.
  * 
  * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- * 
-
  * 
  */
 public class Wurf
 {
-    private int yAnfang; //Ursprungs y-position vom erstellten stoß 
-    private int xAnfang; //Ursprungs x-position vom erstellten stoß
+    private int yAnfang; //Ursprungs y-Position vom erstellten Stoß 
+    private int xAnfang; //Ursprungs x-Position vom erstellten Stoß
     private int xPunkt;
     private int yPunkt;
     private Color farbe;
     private Ball ball1;
     public Canvas leinwand;
     private int gravitation = 2;  // Einfluss der Gravitation
-    public int geschwindigkeit = 200;
-    public int winkel = 45;
+    public int geschwindigkeit = 200; // Anfangsgeschwindigkeit
+    public int winkel = 45; // Anfangswinkel
     private int gespeicherterWinkel;
-    private int wandrechts = 600; 
-    private int wandlinks = 0;
+    private int wandrechts = 600; // x-Koordinaten der Wand rechts
+    private int wandlinks = 0; // x - Koordinaten der Wand links
     private boolean deckeGetroffen = false;
     private boolean wandGetroffen = false;
 

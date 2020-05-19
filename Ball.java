@@ -2,19 +2,21 @@ import java.awt.*;
 import java.awt.geom.*;
 
 /**
- * Die Klasse Ball implementiert grafisch Bälle, die der Schwerkraft
- * unterworfen sind. Ein Ball kann bewegt werden. Die Bedingungen der Bewegung
- * werden dabei vom Ball selbst kontrolliert. Er fällt abwärts und beschleunigt
- * aufgrund der Schwerkraft. Er prallt ab, wenn er an eine Wand oder der Decke auftrifft.
  * 
- * Diese Bewegung kann simuliert werden, indem wiederholt die Operation
- * "bewegen" aufgerufen wird.
+ * Klasse Ball
  * 
+ * In dieser Klasse kann ein Ball mit bestimmten Attributen erzeugt werden. 
+ * Er besitzt einen Durchmesser von 40, hat eine aktuelle x- und y-Postition 
+ * und eine Farbe.
+ * Das Objekt "Ball" wird in der Klasse Spiel erzeugt. 
+ * 
+ * @author
  *
  */
 
 public class Ball
 {
+    //Instanzvariablen
     private Ellipse2D.Double kreis;
     private Color farbe;
     public int durchmesser = 40;
@@ -22,8 +24,8 @@ public class Ball
     public int yPosition;
     public Canvas leinwand;
     public final int bodenhoehe; 
-    private int xAnfang;
-    private int yAnfang;
+    private int xAnfang; // Werden diese benötigt?
+    private int yAnfang; // Werden diese benötigt?
         
     /**
      * Konstruktor für Exemplare von Ball

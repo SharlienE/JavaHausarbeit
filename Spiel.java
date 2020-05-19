@@ -2,14 +2,19 @@ import java.util.Scanner;
 import java.awt.*;
 import java.awt.geom.*;
 /**
- * Beschreiben Sie hier die Klasse Spiel.
+ * Klasse Spiel
+ * Dies ist die Main-Klasse des Programms "Korbwurf"
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Jan Rietmüller (JR)
+ * @author Sharlien Ehlers (SE)
+ * @author Ann-Kathrin Siekmeier (AS)
+ * 
+ * Zenturie: W18b
+ * 
  */
 public class Spiel
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
+    // Instanzvariablen 
     private Canvas leinwand;
     public Ball ball1;
     public Wurf wurf1;
@@ -97,7 +102,7 @@ public class Spiel
      */
     private void spielen()
     {
-        // put your code here
+        
         zeichneSpielfeld();
         String eingabe;
         Konsole konsole = new Konsole();
@@ -107,29 +112,29 @@ public class Spiel
         while (eingabe.length()!=0){
             switch(eingabe){
                 case("l"):
-                //Stoßrichtung dreht nach links um eine Einheit
                 wurf1.wurfrichtungLinks();
+                //konsole.lEingabe();
                 break;
                     
                 case("r"):
-                //Stoßrichtung dret nach rechts um eine Einheit
                 wurf1.wurfrichtungRechts();
+                //konsole.rEingabe();
                 break;
                     
                 case("+"):
-                //Anfangsgeschwindigkeit wird um eine Einheit erhöht
                 wurf1.geschwindigkeitErhöhen();
+                //konsole.plusEingabe();
                 break;
                     
                 case("-"):
-                //Anfangsgeschwindigkeit wird um eine Einheit reduziert
                 wurf1.geschwindigkeitSenken();
+                //konsole.minusEingabe();
                 break;
                     
                 case("s"):
                 //Ball wird geworfen
                 wurf1.werfen();
-                // Alles beenden
+                // Alles beenden und auf Eingabe f warten!
                 break;
                     
                 case("f"):
@@ -149,14 +154,12 @@ public class Spiel
                     
                 case("q"):
                 //Spielende
-                System.out.println("Das Spiel wurde beendet. Danke fürs Spielen!");
-                System.out.println("Sie können die Konsole mit STRG+W beenden.");
+                konsole.qEingabe();
                 System.exit(0);
                     break; 
                     
                 default:
-                System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
-                konsole.zeigeHilfetext();
+                konsole.falscheEingabe();
                     break;
             }
             eingabe = lesen(">");

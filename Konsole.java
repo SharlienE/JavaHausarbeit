@@ -1,19 +1,19 @@
 
 /**
- * Beschreiben Sie hier die Klasse Konsole.
- * Inhalte dieser Klasse:
- *      -Ausgabe des Hilfstextes (Begrüßungstext, Erklärung der Kommandos)
- *      -Funktionalität der Befehle
- *      -Eingabevariablen an Klasse Ball weitergeben
- *      -Fehlerakzeptanz bei Eingabe anderer Buchstaben in die Konsole
+ * Klasse Konsole
+ * 
+ * In dieser Klasse befinden sich alle Ausgaben der Konsole, die dem Spieler
+ * bei Eingabe eines Kommandos übergeben werden. 
+ * 
+ * 
  * 
  * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * 
  */
 public class Konsole
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
+    
 
     /**
      * Konstruktor für Objekte der Klasse Konsole
@@ -50,5 +50,62 @@ public class Konsole
         
     }
     
+    /**
+     * Konsolenausgabe zum Verändern der Stoßrichtung nach links.
+     *
+     */
+    public void lEingabe()
+    {
+        System.out.println("Okay, die Stoßrichtung wurde um eine Einheit nach links gedreht!");
+    }
+
+    /**
+     * Konsolenausgabe zum Verändern der Stoßrichtung nach rechts.
+     *
+     */
+    public void rEingabe()
+    {
+        System.out.println("Okay, die Stoßrichtung wurde um eine Einheit nach rechts gedreht!");
+    }
     
+    /**
+     * Konsolenausgabe zum Erhöhen der Anfangsgeschwindigkeit.
+     *
+     */
+    public void plusEingabe()
+    {
+        System.out.println("Okay, die Anfangsgeschwindigkeit wurde um eine Einheit erhöht!");
+    }
+    
+    /**
+     * Konsolenausgabe zum Reduzieren der Anfangsgeschwindigkeit.
+     *
+     */
+    public void minusEingabe()
+    {
+        System.out.println("Okay, die Anfangsgeschwindigkeit wurde um eine Einheit reduziert!");
+    }
+    
+    /**
+     * Konsolenausgabe beim Beenden des Spiels.
+     *
+     */
+    public void qEingabe()
+    {
+        System.out.println("Das Spiel wurde beendet. Danke fürs Spielen!");
+        System.out.println("Sie können die Konsole mit STRG+W beenden.");
+        
+                
+    }
+    
+    /**
+     * Konsolenausgabe beim Beenden des Spiels.
+     *
+     */
+    public void falscheEingabe()
+    {
+        System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
+        zeigeHilfetext();
+                
+    }
 }
