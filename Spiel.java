@@ -16,8 +16,9 @@ public class Spiel
 {
     // Instanzvariablen 
     private Canvas leinwand;
-    public Ball ball1; 
-    public Wurf wurf1;
+    private Ball ball1; 
+    private Wurf wurf1;
+    private Konsole konsole = new Konsole();
     
     private String saveEingabe;
 
@@ -31,6 +32,8 @@ public class Spiel
         leinwand = new Canvas("Korbwurf",650, 500, Color.white);
         leinwand.setVisible(true);
         leinwand.setSize(650, 500);
+        zeichneSpielfeld();
+        konsole.zeigeHilfetext();
     }
 
     /**
@@ -42,6 +45,7 @@ public class Spiel
         // Instantiierung der Klasse
         Spiel neuesSpiel = new Spiel();
         neuesSpiel.spielen();
+        
     }
     
     /**
@@ -70,7 +74,7 @@ public class Spiel
         
         wurf1 = new Wurf(520, 400, 399, 259, Color.green, leinwand, ball1);
         wurf1.wurfrichtungZeichnen();
-        wurf1.geschwindigkeitSchreiben();
+        wurf1.geschwindigkeitZeichnen(); 
         
         //leinwand.setForegroundColor(Color.BLUE);
 
@@ -116,10 +120,10 @@ public class Spiel
     private void spielen()
     {
         
-        zeichneSpielfeld();
+        //zeichneSpielfeld();
         String eingabe;
-        Konsole konsole = new Konsole();
-        konsole.zeigeHilfetext();
+        //Konsole konsole = new Konsole();
+        //konsole.zeigeHilfetext();
         eingabe = lesen (">");
         
         while (eingabe.length()!=0){

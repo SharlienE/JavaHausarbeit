@@ -56,7 +56,7 @@ public class Wurf
         leinwand.drawLine(xAnfang, yAnfang, xPunkt, yPunkt);  
     }
   
-    public void geschwindigkeitSchreiben()
+    public void geschwindigkeitZeichnen()
     //Die Geschwindigkeitsanzeige wird erstellt
     {
         leinwand.setForegroundColor(Color.black);
@@ -77,7 +77,7 @@ public class Wurf
         if(geschwindigkeit < 500){
            geschwindigkeitLöschen();
            geschwindigkeit += 10;
-           geschwindigkeitSchreiben();
+           geschwindigkeitZeichnen();
            double winkel1= ((winkel*Math.PI)/180);    
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            double yPosition = yAnfang - (Math.sin(winkel1) * geschwindigkeit);
@@ -99,7 +99,7 @@ public class Wurf
        if(geschwindigkeit > 10 ){
            geschwindigkeitLöschen();
            geschwindigkeit -= 10;
-           geschwindigkeitSchreiben();
+           geschwindigkeitZeichnen();
            double winkel1 = ((winkel*Math.PI)/180);
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            double yPosition = yAnfang - (Math.sin(winkel1) * geschwindigkeit);
@@ -218,7 +218,7 @@ public class Wurf
       {
           leinwand.wait(50);// kurze Verzögerung, damit man eine Animation sieht
           bewegen();
-          if(ball1.gibYPosition() >= boden - ball1.durchmesser) {
+          if(ball1.gibYPosition() >= boden - ball1.durchmesser && ball1.gibXPosition() >= 80) {
                 fertig = true; 
                 leinwand.setForegroundColor(Color.RED);
                 Rectangle korbFailed = new Rectangle(0,400,100,20);
