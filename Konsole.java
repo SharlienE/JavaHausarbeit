@@ -50,41 +50,6 @@ public class Konsole
         
     }
     
-    /**
-     * Konsolenausgabe zum Verändern der Stoßrichtung nach links.
-     *
-     */
-    public void lEingabe()
-    {
-        System.out.println("Okay, die Stoßrichtung wurde um eine Einheit nach links gedreht!");
-    }
-
-    /**
-     * Konsolenausgabe zum Verändern der Stoßrichtung nach rechts.
-     *
-     */
-    public void rEingabe()
-    {
-        System.out.println("Okay, die Stoßrichtung wurde um eine Einheit nach rechts gedreht!");
-    }
-    
-    /**
-     * Konsolenausgabe zum Erhöhen der Anfangsgeschwindigkeit.
-     *
-     */
-    public void plusEingabe()
-    {
-        System.out.println("Okay, die Anfangsgeschwindigkeit wurde um eine Einheit erhöht!");
-    }
-    
-    /**
-     * Konsolenausgabe zum Reduzieren der Anfangsgeschwindigkeit.
-     *
-     */
-    public void minusEingabe()
-    {
-        System.out.println("Okay, die Anfangsgeschwindigkeit wurde um eine Einheit reduziert!");
-    }
     
     /**
      * Konsolenausgabe beim Beenden des Spiels.
@@ -105,7 +70,9 @@ public class Konsole
     public void falscheEingabe()
     {
         System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
-        zeigeHilfetext();
-                
+        zeigeHilfetext();   
     }
+    
+   
+
 }

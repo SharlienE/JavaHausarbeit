@@ -16,8 +16,10 @@ public class Spiel
 {
     // Instanzvariablen 
     private Canvas leinwand;
-    public Ball ball1;
+    public Ball ball1; 
     public Wurf wurf1;
+    
+    private String saveEingabe;
 
     private String defaultprompt = ">";
     private Scanner scanner = new Scanner(System.in);
@@ -51,13 +53,13 @@ public class Spiel
         leinwand.setForegroundColor(Color.BLUE);
         leinwand.drawString("Spiel: Korbwurf", 220, 20);
         leinwand.drawLine(0,0,600,0);
-        //leinwand.setForegroundColor(Color.BLUE);
+        
         leinwand.drawLine(600,0,600,400);
-        //leinwand.setForegroundColor(Color.BLUE);
+        
         leinwand.drawLine(600,400,0,400);
-        //leinwand.setForegroundColor(Color.BLUE);
+        
         leinwand.drawLine(0,400,0,0);
-        //leinwand.setForegroundColor(Color.BLUE);
+        
         
         Rectangle korb = new Rectangle(0,400,100,20);
         leinwand.fill(korb);
@@ -70,9 +72,9 @@ public class Spiel
         wurf1.wurfrichtungZeichnen();
         wurf1.geschwindigkeitSchreiben();
         
-        leinwand.setForegroundColor(Color.BLUE);
+        //leinwand.setForegroundColor(Color.BLUE);
 
-        //leinwand.drawString("Anfangsgeschwindigkeit: " + wurf.wiegroßistV(), 350, 450); //v 
+        
     }
     
     /**
@@ -98,6 +100,17 @@ public class Spiel
     }
     
     /**
+     * Methode zum Speichern des letzten ausgeführten Kommandos durch Enter-Betätigung
+     * (Funktioniert nicht bei "s" oder "q")
+     *
+     * 
+     */
+    private void saveEingabe ()
+    {
+        
+    }
+    
+    /**
      * Durchführung der Kommandos
      */
     private void spielen()
@@ -113,28 +126,30 @@ public class Spiel
             switch(eingabe){
                 case("l"):
                 wurf1.wurfrichtungLinks();
-                //konsole.lEingabe();
+                saveEingabe = eingabe; 
                 break;
                     
                 case("r"):
                 wurf1.wurfrichtungRechts();
-                //konsole.rEingabe();
+                saveEingabe = eingabe; 
                 break;
                     
                 case("+"):
                 wurf1.geschwindigkeitErhöhen();
-                //konsole.plusEingabe();
+                saveEingabe = eingabe; 
                 break;
                     
                 case("-"):
                 wurf1.geschwindigkeitSenken();
-                //konsole.minusEingabe();
+                saveEingabe = eingabe; 
                 break;
                     
                 case("s"):
                 //Ball wird geworfen
                 wurf1.werfen();
+                
                 // Alles beenden und auf Eingabe f warten!
+                
                 break;
                     
                 case("f"):
@@ -145,17 +160,24 @@ public class Spiel
                 leinwand.erase();
                 leinwand.wait(20);
                 zeichneSpielfeld();
+                
+                //f neu ausführen
+                saveEingabe = eingabe; 
+                //Startwerte aus vorherigem Wurf übernehmen
+                
                     break;
                     
                 case("h"):
                 //Ausgabe des Hilfetextes
                 konsole.zeigeHilfetext();
+                saveEingabe = eingabe; 
                     break; 
                     
                 case("q"):
                 //Spielende
                 konsole.qEingabe();
                 System.exit(0);
+                
                     break; 
                     
                 default:
@@ -163,8 +185,12 @@ public class Spiel
                     break;
             }
             eingabe = lesen(">");
-        
+            if (eingabe.equals("")){
+                eingabe = saveEingabe;
+            }
         }
     }
+    
+    
 
 }

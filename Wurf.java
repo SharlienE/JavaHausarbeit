@@ -14,7 +14,7 @@ import java.lang.Math;
  * Ein Ball kann bewegt werden, wenn der Spiele die Eingabe "s" tätigt und 
  * somit die Methode "werfen" vom Programm aufgerufen wird.
  * 
- * @author (Ihr Name) 
+ * @author 
  * 
  */
 public class Wurf
@@ -256,11 +256,6 @@ public class Wurf
       }          
      }
       
-    public void restart()
-        {
-        winkel = gespeicherterWinkel;
-        //gravitation = 5;
-    }
     
     public int gibGeschwindigkeit()
     {
