@@ -19,16 +19,18 @@ import java.lang.Math;
  */
 public class Wurf
 {
-    private int yAnfang; //Ursprungs y-Position vom erstellten Stoß 
-    private int xAnfang; //Ursprungs x-Position vom erstellten Stoß
-    private int xPunkt;
-    private int yPunkt;
-    private Color farbe;
-    private Ball ball1;
     public Canvas leinwand;
-    private int gravitation = 2;  // Einfluss der Gravitation
+    
     public int geschwindigkeit = 200; // Anfangsgeschwindigkeit
     public int winkel = 45; // Anfangswinkel
+    
+    private Color farbe;
+    private Ball ball1;
+    private int yAnfang; 
+    private int xAnfang; 
+    private int xPunkt;
+    private int yPunkt;
+    private int gravitation = 1;  // Einfluss der Gravitation
     private int gespeicherterWinkel;
     private int wandrechts = 600; // x-Koordinaten der Wand rechts
     private int wandlinks = 0; // x - Koordinaten der Wand links
@@ -36,48 +38,46 @@ public class Wurf
     private boolean wandGetroffen = false;
 
     /**
-     * Konstruktor für Objekte der Klasse Wurf
-     * Anfangsgeschwindigkeit wird angegeben
+     * Konstruktor für Objekte Wurf
+     * 
+     * (int) xStart ; yStart ; xEnde ; yEnde bzw.
+     * (int) xAnfang ; yAnfang ; xPunkt ; yPunkt
+     * (Color) linienFarbe = farbe
+     * (Canvas) leinwand
+     * 
+     * 
      */
-    public Wurf(int x0, int y0, int x1, int y1, Color linienFarbe, Canvas leinwand, Ball ball1)    
+    public Wurf(int xStart, int yStart, int xEnde, int yEnde, Color linienFarbe, Canvas leinwand, Ball ball1)    
     {
-        yAnfang = y0;
-        xAnfang = x0;
-        xPunkt = x1;
-        yPunkt = y1;
+        yAnfang = yStart;
+        xAnfang = xStart;
+        xPunkt = xEnde;
+        yPunkt = yEnde;
         this.leinwand = leinwand;
         farbe = linienFarbe;
         this.ball1 = ball1;
     }
-     
-    public void wurfrichtungZeichnen()
-    {    //die Wurflinie, die vom Nutzer gesehen wird, wird gezeichnet 
-        leinwand.setForegroundColor(farbe); // Wurflinienfarbe wird gewählt - Grün
-        leinwand.drawLine(xAnfang, yAnfang, xPunkt, yPunkt);  
-    }
-  
-    public void geschwindigkeitZeichnen()
-    //Die Geschwindigkeitsanzeige wird erstellt
-    {
-        leinwand.setForegroundColor(Color.black);
-        leinwand.drawString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/100), 350, 450);
-    }
     
-    //Funktioniert
-    public void geschwindigkeitLöschen()
-    //Die Geschwindigkeitsanzeige wird gelöscht
-    {
-       leinwand.eraseString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/100), 350, 450);
-    }
     
-    public void geschwindigkeitErhöhen()
-     //Hier wird nach der Eingabe von + die Geschwindigkeit erhöht
+    
+    
+    /**
+     * Wenn die Geschwindigkeit mit der Eingabe "+" um eine Einheit erhöht werden soll
+     * Einheit = 10
+     * nicht schneller als 5.0
+     * "setGeschwindigkeitHoch"
+     *
+     * @param       ERGÄNZEN
+     *
+     */
+    public void geschwindigkeitPlus()
+    
     {
-       //geschwindigkeitSchreiben()
+       
         if(geschwindigkeit < 500){
-           geschwindigkeitLöschen();
+           geschwindigkeitErase();
            geschwindigkeit += 10;
-           geschwindigkeitZeichnen();
+           vZeichnen();
            double winkel1= ((winkel*Math.PI)/180);    
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            double yPosition = yAnfang - (Math.sin(winkel1) * geschwindigkeit);
@@ -88,18 +88,26 @@ public class Wurf
            wurfrichtungZeichnen();
        }     
        else {
-           System.out.println("Maximale Geschwindigkeit erreicht");
+           System.out.println("Schneller geht leider nicht...");
        }
-       //geschwindigkeitLöschen();
+       
     }
     
-    public void geschwindigkeitSenken()
-    //Hier wird nach der Eingabe von - die Geschwindigkeit gesenkt
+    /**
+     * Wenn die Geschwindigkeit mit der Eingabe "-" um eine Einheit reduziert werden soll
+     * Einheit = 10
+     * nicht langsamer als 0.1
+     * "setGeschwindigkeitRunter"
+     *
+     * @param       ERGÄNZEN
+     */
+    public void geschwindigkeitMinus()
+    
     {
        if(geschwindigkeit > 10 ){
-           geschwindigkeitLöschen();
+           geschwindigkeitErase();
            geschwindigkeit -= 10;
-           geschwindigkeitZeichnen();
+           vZeichnen();
            double winkel1 = ((winkel*Math.PI)/180);
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            double yPosition = yAnfang - (Math.sin(winkel1) * geschwindigkeit);
@@ -110,10 +118,18 @@ public class Wurf
            wurfrichtungZeichnen();
         }   
       else {
-           System.out.println("Minimale Geschwindigkeit erreicht");
+           System.out.println("Langsamer geht leider nicht...");
       }
     }
         
+    /**
+     * Wenn die Wurfrichtung mit der Eingabe "r" um eine Einheit nach rechts gehen soll
+     * Einheit = 5 Grad
+     * nicht weiter als 180 Grad (d.h. bei 175 Grad darf nicht mehr erhöht werden)
+     * "setRichtungHoch"
+     * 
+     * @param       ERGÄNZEN
+     */
     public void wurfrichtungRechts()
     {
         if(winkel <= 175){
@@ -127,12 +143,20 @@ public class Wurf
            ball1.zeichneBall();
            wurfrichtungZeichnen();
         } else  {
-            System.out.println("Weiter nach rechts geht es nicht");
+            System.out.println("Mehr AfD geht nicht...");
         }
         
     }   
     
-    //über 90 und bis 5 anpassen
+    
+    /**
+     * Wenn die Wurfrichtung mit der Eingabe "l" um eine Einheit nach links gehen soll
+     * Einheit = 5 Grad
+     * nicht weiter als 0 Grad (d.h. bei 5 Grad darf nicht mehr reduziert werden)
+     * "setRichtungRunter"
+     * 
+     * @param       ERGÄNZEN
+     */
     public void wurfrichtungLinks()
     {
        if(winkel >= 5){
@@ -146,11 +170,11 @@ public class Wurf
            ball1.zeichneBall();
            wurfrichtungZeichnen();      
         }  else {
-             System.out.println("Weiter nach links geht es nicht");
+             System.out.println("Mehr Wagenknecht geht nicht...");
         }
     }
   
-    //bearbeiten
+    //Passt das so??
     /**
      * Bewege diesen Ball entsprechend seiner Position und 
      * Geschwindigkeit und zeichne ihn erneut.
@@ -162,39 +186,47 @@ public class Wurf
         
         
             
-        
-            //Überprüfung, ob Decke getroffen wurde
+        //Decke getroffen? 
         if(deckeGetroffen == true){
-            winkel += 180;      // wenn der Ball an der Decke abprallt, wird die Steigung gespiegelt. Faür erhält der sinus winkel plus 180°
+            winkel += 180;      // Also es klappt so halb mit 180 Grad..
+            // Aber muss hier nicht irgendwie Einfallswinkel = Ausfallswinkel?
+            
+            // Damit die Leinwand nicht verschwindet, wenn der Ball durchgeht...
             leinwand.setFont(new Font("helvetica", Font.BOLD, 14));
             leinwand.setForegroundColor(Color.BLUE);
             leinwand.drawString("Spiel: Korbwurf", 220, 20);
             leinwand.drawLine(0,0,600,0);
         } 
-            //Überprüfung, ob es ein Seitenabpraller ist
+            //Wand getroffen?
         if(wandGetroffen == true){
-            //Überprüfung, ob links abprallt
-             if(ball1.gibXPosition() <= (wandlinks + ball1.durchmesser)){
+            //Left Bounce
+             if(ball1.getXPosition() <= (wandlinks + ball1.durchmesser)){
                     winkel += 90;
+                    // Hier siehe oben...?
+                    
+                    // Damit die Leinwand nicht verschwindet, wenn der Ball durchgeht...
                     leinwand.setForegroundColor(Color.BLUE);
                     leinwand.drawLine(0,400,0,0);
                 }
-            //Überprüfung, ob rechts abprallt
-             if (ball1.gibXPosition() >= (wandrechts - ball1.durchmesser)){
+            //Right Bounce
+             if (ball1.getXPosition() >= (wandrechts - ball1.durchmesser)){
                     winkel -= 90;
+                    // Hier siehe oben...?
+                    
+                    //Damit die Leinwand nicht verschwindet, wenn der Ball durchgeht...
                     leinwand.setForegroundColor(Color.BLUE);
                     leinwand.drawLine(600,0,600,400);
                 }
         }
-        gravitation += 2;
+        gravitation += 1;
         double winkel1 = ((winkel*Math.PI)/180);
-        double yÄnderung = (Math.sin(winkel1) * (geschwindigkeit/5)); 
-        double xÄnderung = (Math.cos(winkel1) * (geschwindigkeit/5));       
-        ball1.yPosition = ball1.yPosition - ((int)(yÄnderung) - gravitation);
-        ball1.xPosition = ball1.xPosition - (int)(xÄnderung);
+        double yÄnderung = (Math.sin(winkel1) * (geschwindigkeit)); 
+        double xÄnderung = (Math.cos(winkel1) * (geschwindigkeit));       
+        ball1.yPosition = ball1.yPosition - ((int)(yÄnderung/10) - gravitation);
+        ball1.xPosition = ball1.xPosition - (int)(xÄnderung/10);
         deckeGetroffen = false;   
         wandGetroffen = false;
-        // Prüfen, ob der Boden erreicht ist.
+        // Boden erreicht?
         if(ball1.yPosition >= (ball1.bodenhoehe - ball1.durchmesser) && yÄnderung>0) {
             ball1.yPosition = (int) (ball1.bodenhoehe - ball1.durchmesser);
             yÄnderung = -yÄnderung; 
@@ -206,29 +238,29 @@ public class Wurf
     }  
 
     
-    //Der Ball soll mit den gegebenen Parametern gestoßen werden
-    //Funktioniert
+    //Ich glaube, hier muss noch was verändert werden, damit "s" auf den neuen Ball zugreifen kann..
+    //Irgendjemand Ideen??
+    /**
+     * Wenn der Ball durch die Eingabe "s" geworfen werden soll 
+     * (mit entsprechenden Paramtern, also Winkel und Geschwindigkeit)
+     *
+     * @param    ERGÄNZEN
+     * 
+     */
     public void werfen()
     {
       int boden = 400;
       gespeicherterWinkel = winkel;
-      //bewegen();
       boolean fertig = false;
       while (!fertig)
       {
-          leinwand.wait(50);// kurze Verzögerung, damit man eine Animation sieht
+          leinwand.wait(50);
           bewegen();
-          if(ball1.gibYPosition() >= boden - ball1.durchmesser && ball1.gibXPosition() >= 80) {
-                fertig = true; 
-                leinwand.setForegroundColor(Color.RED);
-                Rectangle korbFailed = new Rectangle(0,400,100,20);
-                leinwand.fill(korbFailed);
-                System.out.println("Schade, versuchen Sie es noch einmal!");
-            }
           
           
-          // Überprüfung, ob Korb getroffen wurde
-          if (ball1.gibXPosition() <= 60 && ball1.gibYPosition() >=360)
+          
+          // Korb getroffen?
+          if (ball1.getXPosition() <= 60 && ball1.getYPosition() >=360)
           {
             fertig = true;
             leinwand.setForegroundColor(Color.GREEN);
@@ -236,31 +268,81 @@ public class Wurf
                 leinwand.fill(korbSuccess);
                 System.out.println("Glückwunsch, Treffer!");
           }
-                            
-          //Prüfung & Berechnung der Decken Abpraller
-          if(ball1.gibYPosition() <= 0 && geschwindigkeit > 0)
+              
+          // Korb verfehlt?
+          if(ball1.getYPosition() >= boden - ball1.durchmesser && ball1.getXPosition() >= 80) {
+                fertig = true; 
+                leinwand.setForegroundColor(Color.RED);
+                Rectangle korbFailed = new Rectangle(0,400,100,20);
+                leinwand.fill(korbFailed);
+                System.out.println("Schade, versuchen Sie es noch einmal!");
+            }
+          
+          //Decke getroffen?
+          if(ball1.getYPosition() <= 0 && geschwindigkeit > 0)
           {
             deckeGetroffen = true;
           }
-                           
-          if((ball1.gibXPosition() <= 0 || ball1.gibXPosition() >= 560) && geschwindigkeit > 0)
+          
+          //Wand getroffen?                 
+          if((ball1.getXPosition() <= 0 || ball1.getXPosition() >= 560) && geschwindigkeit > 0)
           {
             wandGetroffen = true;
           }
-         //Überprüfung, ob der Rand getroffen wurde
-          if(ball1.gibYPosition() >= 360 && ball1.gibXPosition() > 60  ) 
-          {
-            fertig = true;
-          }
+          
+          
+          // Ich glaube, die folgende If-Schleife kann raus... 
+          // (Bitte vorsichtshalber als Kommentar so lassen)
+          //if(ball1.getYPosition() >= 360 && ball1.getXPosition() > 60  ) 
+          //{
+          //  fertig = true;
+          //}
     
       }          
      }
-      
-    
-    public int gibGeschwindigkeit()
-    {
-        return geschwindigkeit;
+     
+      /**
+     * Linie der Wurfrichtung zeichnen.
+     *
+     * (int)  xAnfang, yAnfang, xPunkt, yPunkt
+     */
+    public void wurfrichtungZeichnen()
+    {    
+        leinwand.setForegroundColor(farbe); 
+        leinwand.drawLine(xAnfang, yAnfang, xPunkt, yPunkt);  
     }
+  
+    /**
+     * Geschwindigkeit auf der Leinwand später anzeigen lassen.
+     *
+     * @param   (float) geschwindigkeit
+     * @param   (String) "Anfangsgeschwindigkeit"
+     * 
+     * durch 100 teilen, weil sonst zu groß?
+     * --> so wird statt 200, nur 2.0 angezeigt. 
+     */
+    public void vZeichnen()
+    
+    {
+        leinwand.setForegroundColor(Color.black);
+        leinwand.drawString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/100), 350, 450);
+    }
+    
+    
+    /**
+     * Geschwindigkeit wieder auf der Leinwand löschen, 
+     * damit sie überschrieben werden kann
+     *
+     * @param   (float) geschwindigkeit
+     * @param   (String) "Anfangsgeschwindigkeit"
+     *
+     */
+    public void geschwindigkeitErase()
+    
+    {
+       leinwand.eraseString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/100), 350, 450);
+    }
+   
     
 }
 

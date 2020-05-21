@@ -28,20 +28,22 @@ public class Ball
     private int yAnfang; // Werden diese benötigt?
         
     /**
-     * Konstruktor für Exemplare von Ball
-     *
-     * @param xPos  die horizontale Koordinate des Balles
-     * @param yPos  die vertikale Koordinate des Balles
-     * @param balldurchmesser  der Durchmesser des Balles (in Bildschirmpunkten)
-     * @param ballfarbe  die Farbe des Balles
-     * @param bodenPosition  die y-Position des Bodens (wo der Ball aufspringt)
-     * @param zeichengrund die Leinwand, auf der dieser Ball gezeichnet wird
+     * Konstruktor für Objekte Ball
+     * 
+     * 
+     * Parameter:
+     * (int)    xPos ; yPos ; balldurchmesser ; bodenPosition
+     * (Color)  ballfarbe 
+     * (Canvas) zeichengrund 
      */
     public Ball(int xPos, int yPos, int balldurchmesser, Color ballfarbe,
                 int bodenPosition, Canvas leinwand)
     {
         xPosition = xPos;
+        xAnfang = xPos;
+        
         yPosition = yPos;
+        yAnfang = yPos;
         farbe = ballfarbe;
         durchmesser = balldurchmesser;
         bodenhoehe = bodenPosition;
@@ -49,16 +51,17 @@ public class Ball
     }
 
     /**
-     * Zeichne diesen Ball an der aktuellen Position auf die Leinwand.
+     * Zeichne den Ball an der aktuellen Position.
      **/
     public void zeichneBall()
     {
         leinwand.setForegroundColor(farbe);
         leinwand.fillCircle(xPosition, yPosition, durchmesser);
+        
     }
 
     /**
-     * Lösche diesen Ball an seiner aktuellen Position.
+     * Lösche den Ball an seiner aktuellen Position.
      **/
     public void loescheBall()
     {
@@ -66,19 +69,40 @@ public class Ball
     }    
      
     /**
-     * Liefere die horizontale Position dieses Balls.
+     * Gebe die xPosition des Balls zurück. 
+     * 
+     * @return xPosition (aktuelle xPosition des Balls)
      */
-    public int gibXPosition()
+    public int getXPosition()
     {
         return xPosition;
     }
 
+
+
     /**
-     * Liefere die vertikale Position dieses Balls.
+     * Gebe die yPosition des Balls zurück. 
+     * 
+     * @return yPosition (aktuelle yPosition des Balls)
      */
-    public int gibYPosition()
+    public int getYPosition()
     {
         return yPosition;
     }
     
+    /**
+     * Ball in die Anfangsposition zurück versetzen.
+     *
+     */
+    public void zeichneBallamAnfang()
+    {
+        // put your code here
+        
+         
+        leinwand.setForegroundColor(farbe);
+        leinwand.fillCircle(xAnfang, yAnfang, durchmesser);
+        xPosition = xAnfang;
+        yPosition = yAnfang;
+    }
+
 }
