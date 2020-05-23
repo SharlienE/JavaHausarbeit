@@ -181,7 +181,7 @@ public class Wurf
      **/
     public void bewegen()
     {
-        ball1.loescheBall();
+        //ball1.loescheBall();
         // Neue Position berechnen.
         
         
