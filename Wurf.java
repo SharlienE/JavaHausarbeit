@@ -260,6 +260,7 @@ public class Wurf
         
         //Decke getroffen? 
         if(deckeGetroffen == true){
+            getWinkel();
             winkel += 180;      // Also es klappt so halb mit 180 Grad..
             // Aber muss hier nicht irgendwie Einfallswinkel = Ausfallswinkel?
             
@@ -363,9 +364,9 @@ public class Wurf
           //{
           //  fertig = true;
           //}
-          if (ball1.getYPosition() <= 0 )
+          if (ball1.getYPosition() >= 400 )
           {
-              break;
+              fertig=true;
             }
        }          
      }
