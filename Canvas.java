@@ -21,10 +21,11 @@ public class Canvas
 {
     private JFrame frame;
     private CanvasPane canvas;
-    private Graphics2D graphic;
+    public Graphics2D graphic;
     private Color backgroundColor;
     private Image canvasImage;
-
+    public Wurf wurf1;
+    
     /**
      * Create a Canvas with default height, width and background color 
      * (300, 300, white).
@@ -255,18 +256,49 @@ public class Canvas
      * Methode zur gestrichelten Linie 
      * Quelle: http://www.java2s.com/Tutorials/Java/Graphics/Graphics_Settings/Use_dashed_stroke_to_draw_dashed_line_in_Java.htm
      */
-    public void paint(int x1, int y1, int x2, int y2) {
+    public void drawDashedLine(int x1, int y1, int x2, int y2) {
         float[] dash1 = { 2f, 0f, 2f };
-        BasicStroke bs1 = new BasicStroke(1, 
+        BasicStroke bs1 = new BasicStroke(2, 
             BasicStroke.CAP_BUTT, 
             BasicStroke.JOIN_ROUND, 
             1.0f, 
             dash1,
-            2f);
+            2f); 
         graphic.setStroke(bs1);
         graphic.drawLine(x1, y1, x2, y2);
         canvas.repaint();
     }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void eraseDashedLine(int x1, int y1, int x2, int y2)
+    {
+        // put your code here
+        Color original = graphic.getColor();
+      graphic.setColor(backgroundColor);
+      drawDashedLine(x1, y1, x2, y2);   
+      graphic.setColor(original);
+      canvas.repaint();
+    }
+
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void drawRahmen(int x1, int y1, int x2, int y2)
+    {
+        BasicStroke rahmen = new BasicStroke(2);
+        graphic.setStroke(rahmen);
+        graphic.drawLine(x1, y1, x2, y2);
+        canvas.repaint();
+    }
+
     
     /**
      * Erases a line on the Canvas.

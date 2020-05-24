@@ -26,8 +26,8 @@ public class Wurf
     
     private Color farbe;
     private Ball ball1;
-    private int yAnfang, yPunkt; 
-    private int xAnfang, xPunkt; 
+    public int yAnfang, yPunkt; 
+    public int xAnfang, xPunkt; 
     private int gravitation = 1;        // Einfluss der Gravitation
     private int wandrechts = 600;       // x-Koordinaten der Wand rechts
     private int wandlinks = 0;          // x - Koordinaten der Wand links
@@ -85,7 +85,7 @@ public class Wurf
     public void wurfrichtungZeichnen()
     {    
         leinwand.setForegroundColor(farbe);
-        leinwand.paint(xAnfang, yAnfang, xPunkt, yPunkt);
+        leinwand.drawDashedLine(xAnfang, yAnfang, xPunkt, yPunkt); 
     }
   
     /**
@@ -115,7 +115,7 @@ public class Wurf
     public void geschwindigkeitErase()
     
     {
-       leinwand.eraseString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/100), 350, 450);
+       leinwand.eraseString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/10), 350, 450);
     }
     
     /**
@@ -151,7 +151,7 @@ public class Wurf
            geschwindigkeitErase();
            setGeschwindigkeit(geschwindigkeit += 10);
            vZeichnen();    
-           leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
+           leinwand.eraseDashedLine(xAnfang, yAnfang, xPunkt, yPunkt);
            getXPunkt();
            getYPunkt();
            ball1.zeichneBall();
@@ -177,7 +177,7 @@ public class Wurf
            geschwindigkeitErase();
            setGeschwindigkeit(geschwindigkeit -= 10);
            vZeichnen();
-           leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
+           leinwand.eraseDashedLine(xAnfang, yAnfang, xPunkt, yPunkt);
            getXPunkt();
            getYPunkt();
            ball1.zeichneBall();
@@ -216,7 +216,7 @@ public class Wurf
     public void wurfrichtungRechts()
     {
         if(winkel <= 175){
-           leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
+           leinwand.eraseDashedLine(xAnfang, yAnfang, xPunkt, yPunkt);
            setWinkel(winkel += 5);
            getXPunkt();
            getYPunkt();
@@ -238,7 +238,7 @@ public class Wurf
     public void wurfrichtungLinks()
     {
         if(winkel >= 5){
-           leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
+           leinwand.eraseDashedLine(xAnfang, yAnfang, xPunkt, yPunkt);
            setWinkel(winkel -= 5);
            getXPunkt();
            getYPunkt();

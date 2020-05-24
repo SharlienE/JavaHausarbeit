@@ -68,4 +68,20 @@ public class Konsole
         System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
         zeigeHilfetext();   
     }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public void zeigeStext()
+    {
+        // put your code here
+        System.out.println("Netter Versuch. Sie können nochmal neu starten.");
+        System.out.println("Dafür drücken Sie einfach: ");
+        System.out.println("f - für den neuen Wurfversuch oder"); 
+        System.out.println("q - um das Spiel zu beenden.");
+    }
+
 }
