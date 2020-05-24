@@ -47,9 +47,7 @@ public class Konsole
         System.out.println("- h: Hilfe-Text-");
         System.out.println("- q: Spielende. Kosole kann mit STRG+W beendet werden -");
         System.out.println("-------- Viel Glück! -------");
-        
     }
-    
     
     /**
      * Konsolenausgabe beim Beenden des Spiels.
@@ -58,9 +56,7 @@ public class Konsole
     public void qEingabe()
     {
         System.out.println("Das Spiel wurde beendet. Danke fürs Spielen!");
-        System.out.println("Sie können die Konsole mit STRG+W beenden.");
-        
-                
+        System.out.println("Sie können die Konsole mit STRG+W beenden.");       
     }
     
     /**
@@ -72,7 +68,4 @@ public class Konsole
         System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
         zeigeHilfetext();   
     }
-    
-   
-
 }

@@ -1,8 +1,12 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.*;
 
+import java.awt.BasicStroke;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 /**
  * Class Canvas - a class to allow for simple graphical 
  * drawing on a canvas.
@@ -20,6 +24,17 @@ public class Canvas
     private Graphics2D graphic;
     private Color backgroundColor;
     private Image canvasImage;
+    
+    /**
+     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
+     * 
+     * @param  y	(Beschreibung des Parameters)
+     * @return		(Beschreibung des Rückgabewertes)
+     */
+    public Canvas (Graphics g)
+    {
+        Graphics2D g2d = (Graphics2D) g;
+    }
 
     /**
      * Create a Canvas with default height, width and background color 
@@ -245,6 +260,18 @@ public class Canvas
     {
         graphic.drawLine(x1, y1, x2, y2);   
         canvas.repaint();
+    }
+    
+    public void paint(int x1, int y1, int x2, int y2) {
+        float[] dash1 = { 2f, 0f, 2f };
+        BasicStroke bs1 = new BasicStroke(1, 
+            BasicStroke.CAP_BUTT, 
+            BasicStroke.JOIN_ROUND, 
+            1.0f, 
+            dash1,
+            2f);
+        graphic.setStroke(bs1);
+        graphic.drawLine(x1, y1, x2, y2);
     }
     
     /**

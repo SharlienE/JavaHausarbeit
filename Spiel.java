@@ -1,5 +1,3 @@
-//Test blabla
-
 import java.util.Scanner;
 import java.awt.*;
 import java.awt.geom.*;
@@ -17,10 +15,9 @@ import java.awt.geom.*;
 public class Spiel
 {
     // Instanzvariablen 
-    private Canvas leinwand;
+    public Canvas leinwand;
     public Ball ball1; 
     private Wurf wurf1;
-    
     private Konsole konsole = new Konsole();
     
     private String saveEingabe;
@@ -38,12 +35,10 @@ public class Spiel
         int boden = 400;
         ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand); 
         ball1.zeichneBall(); 
-        wurf1 = new Wurf(520, 380, 400, 250, Color.green, leinwand, ball1);
+        wurf1 = new Wurf(520, 380, 400, 250, 200, 45, Color.green, leinwand, ball1);
         zeichneSpielfeld();
         
         konsole.zeigeHilfetext();
-        
-        
     }
 
     /**
@@ -55,7 +50,6 @@ public class Spiel
         // Instantiierung der Klasse
         Spiel neuesSpiel = new Spiel();
         neuesSpiel.spielen();
-        
     }
     
     /**
@@ -67,14 +61,10 @@ public class Spiel
         leinwand.setForegroundColor(Color.BLUE);
         leinwand.drawString("Spiel: Korbwurf", 220, 20);
         leinwand.drawLine(0,0,600,0);
-        
         leinwand.drawLine(600,0,600,400);
-        
         leinwand.drawLine(600,400,0,400);
-        
         leinwand.drawLine(0,400,0,0);
-        
-        
+
         Rectangle korb = new Rectangle(0,400,100,20);
         leinwand.fill(korb);
         
@@ -82,15 +72,12 @@ public class Spiel
         //ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand); 
         //ball1.zeichneBallamAnfang();
         //ball1.zeichneBall(); 
-        
-        
+
         // wurf1 = new Wurf(520, 400, 399, 259, Color.green, leinwand, ball1);
         wurf1.wurfrichtungZeichnen();
         wurf1.vZeichnen();  
         
         //leinwand.setForegroundColor(Color.BLUE);
-
-        
     }
     
     /**
@@ -115,23 +102,17 @@ public class Spiel
         return eingabe;
     }
     
-    
-    
     /**
      * Durchführung der Kommandos
      */
     private void spielen()
     {
-        
         //zeichneSpielfeld();
-        
-        
-        
+         
         String eingabe;
         //Konsole konsole = new Konsole();
         //konsole.zeigeHilfetext();
         eingabe = lesen (">");
-        
         while (eingabe.length()!=0){
             switch(eingabe){
                 case("l"):
@@ -171,7 +152,9 @@ public class Spiel
                 leinwand.wait(20);
                 //Startwerte aus vorherigem Wurf übernehmen
                 int boden = 400;
-                ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand); 
+                ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand);
+                wurf1 = new Wurf (520, 380, wurf1.getXPunkt(), wurf1.getYPunkt() , 
+                    wurf1.getGeschwindigkeit(), wurf1.getWinkel(), Color.green, leinwand, ball1);
                 zeichneSpielfeld();
                 ball1.zeichneBallamAnfang();
                 //f neu ausführen
@@ -204,6 +187,4 @@ public class Spiel
         }
     }
     
-    
-
 }

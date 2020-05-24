@@ -57,7 +57,6 @@ public class Ball
     {
         leinwand.setForegroundColor(farbe);
         leinwand.fillCircle(xPosition, yPosition, durchmesser);
-        
     }
 
     /**
@@ -77,8 +76,6 @@ public class Ball
     {
         return xPosition;
     }
-
-
 
     /**
      * Gebe die yPosition des Balls zurück. 
