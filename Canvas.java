@@ -24,17 +24,6 @@ public class Canvas
     private Graphics2D graphic;
     private Color backgroundColor;
     private Image canvasImage;
-    
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y	(Beschreibung des Parameters)
-     * @return		(Beschreibung des Rückgabewertes)
-     */
-    public Canvas (Graphics g)
-    {
-        Graphics2D g2d = (Graphics2D) g;
-    }
 
     /**
      * Create a Canvas with default height, width and background color 
@@ -262,6 +251,10 @@ public class Canvas
         canvas.repaint();
     }
     
+    /**
+     * Methode zur gestrichelten Linie 
+     * Quelle: http://www.java2s.com/Tutorials/Java/Graphics/Graphics_Settings/Use_dashed_stroke_to_draw_dashed_line_in_Java.htm
+     */
     public void paint(int x1, int y1, int x2, int y2) {
         float[] dash1 = { 2f, 0f, 2f };
         BasicStroke bs1 = new BasicStroke(1, 
@@ -272,6 +265,7 @@ public class Canvas
             2f);
         graphic.setStroke(bs1);
         graphic.drawLine(x1, y1, x2, y2);
+        canvas.repaint();
     }
     
     /**
