@@ -238,6 +238,10 @@ public class Spiel
                 neueEingabe=true;
                     break;
             }
+            if(!neueEingabe)
+                    {
+                    eingabe = lesen(">");
+                }
         }
         
 }
