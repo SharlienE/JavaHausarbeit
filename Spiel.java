@@ -24,6 +24,8 @@ public class Spiel
 
     private String defaultprompt = ">";
     private Scanner scanner = new Scanner(System.in);
+    
+    boolean sEingabe = false;
     /**
      * Konstruktor für Objekte der Klasse Spiel
      */
@@ -60,10 +62,10 @@ public class Spiel
         leinwand.setFont(new Font("helvetica", Font.BOLD, 14));
         leinwand.setForegroundColor(Color.BLUE);
         leinwand.drawString("Spiel: Korbwurf", 220, 20);
-        leinwand.drawRahmen(0,0,600,0);
-        leinwand.drawRahmen(600,0,600,400);
-        leinwand.drawRahmen(600,400,0,400);
-        leinwand.drawRahmen(0,400,0,0);
+        leinwand.drawLine(0,0,600,0); 
+        leinwand.drawLine(600,0,600,400);
+        leinwand.drawLine(600,400,0,400);
+        leinwand.drawLine(0,400,0,0); 
 
         Rectangle korb = new Rectangle(0,400,100,20);
         leinwand.fill(korb);
@@ -73,7 +75,7 @@ public class Spiel
         //ball1.zeichneBallamAnfang();
         //ball1.zeichneBall(); 
 
-        // wurf1 = new Wurf(520, 400, 399, 259, Color.green, leinwand, ball1);
+        //wurf1 = new Wurf(520, 400, 399, 259, Color.green, leinwand, ball1);
         wurf1.wurfrichtungZeichnen();
         wurf1.vZeichnen();  
         
@@ -110,12 +112,12 @@ public class Spiel
         //zeichneSpielfeld();
          
         String eingabe;
-        
+        sEingabe = false;
         
         //Konsole konsole = new Konsole();
         //konsole.zeigeHilfetext();
         eingabe = lesen (">");
-        while (eingabe.length()!=0){
+        while (eingabe.length()!=0 && sEingabe == false){
             switch(eingabe){
                 case("l"):
                 wurf1.wurfrichtungLinks();
@@ -142,7 +144,7 @@ public class Spiel
                 //wurf1.werfen();
                 // Alles beenden und auf Eingabe f warten!
                 
-                
+                sEingabe=true;
                 nächsteEingabe();                 
                 
                 break;
@@ -203,8 +205,9 @@ public class Spiel
         String eingabe;
         konsole.zeigeStext();
         eingabe = lesen (">");
-        boolean neueEingabe = false;
-        while (!neueEingabe){
+        sEingabe = true; 
+        //boolean neueEingabe = false;
+        while (sEingabe == true){
             switch(eingabe){
             case("f"):
             //löschen und erneutes Zeichnen des Spielfeldes.
@@ -222,7 +225,9 @@ public class Spiel
                 zeichneSpielfeld();
                 ball1.zeichneBallamAnfang();
             
-                neueEingabe=true;
+                //neueEingabe=true;
+                sEingabe = false;
+                spielen();
             break;
             
             case("q"):
@@ -230,18 +235,18 @@ public class Spiel
                 konsole.qEingabe();
                 System.exit(0);
             
-                neueEingabe=true;
+                //neueEingabe=true;
+                sEingabe = false;
+                
             break;
             
             default:
             konsole.falscheEingabe();
-                neueEingabe=true;
+                //neueEingabe=true;
+                spielen();
                     break;
             }
-            if(!neueEingabe)
-                    {
-                    eingabe = lesen(">");
-                }
+            
         }
         
 }

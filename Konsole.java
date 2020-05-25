@@ -78,7 +78,7 @@ public class Konsole
     public void zeigeStext()
     {
         // put your code here
-        System.out.println("Netter Versuch. Sie können nochmal neu starten.");
+        System.out.println("Sie können nochmal neu starten.");
         System.out.println("Dafür drücken Sie einfach: ");
         System.out.println("f - für den neuen Wurfversuch oder"); 
         System.out.println("q - um das Spiel zu beenden.");
