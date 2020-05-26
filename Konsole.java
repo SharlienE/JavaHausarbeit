@@ -70,6 +70,15 @@ public class Konsole
     }
     
     /**
+     * Konsolenausgabe beim Beenden des Spiels, wenn vorher "s" gedrückt wurde.
+     *
+     */
+    public void falscheEingabeBeiS()
+    {
+        System.out.println("Falsches Kommando. Bitte geben Sie eines der gültigen Kommandos ein!");
+    }
+
+    /**
      * An example of a method - replace this comment with your own
      *
      * @param  y  a sample parameter for a method
