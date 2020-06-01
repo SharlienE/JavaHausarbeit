@@ -19,7 +19,6 @@ public class Spiel
     private Ball ball1; 
     private Wurf wurf1;
     private Konsole konsole = new Konsole();
-    
     private String saveEingabe;
 
     private String defaultprompt = ">";
@@ -36,10 +35,9 @@ public class Spiel
         leinwand.setSize(650, 500);
         int boden = 400;
         ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand); 
-        ball1.zeichneBall(); 
-        wurf1 = new Wurf(520, 380, 400, 250, 200, 45, Color.green, leinwand, ball1);
+        //ball1.zeichneBall(); 
+        wurf1 = new Wurf(520, 380, 400, 250,200, 45, Color.green, leinwand, ball1);
         zeichneSpielfeld();
-        
         konsole.zeigeHilfetext();
     }
 
@@ -70,16 +68,11 @@ public class Spiel
         Rectangle korb = new Rectangle(0,400,100,20);
         leinwand.fill(korb);
         
-        //int boden = 400; 
-        //ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand); 
-        //ball1.zeichneBallamAnfang();
-        //ball1.zeichneBall(); 
+        int boden = 400; 
+        ball1.zeichneBallAmAnfang();
 
-        //wurf1 = new Wurf(520, 400, 399, 259, Color.green, leinwand, ball1);
         wurf1.wurfrichtungZeichnen();
         wurf1.vZeichnen();  
-        
-        //leinwand.setForegroundColor(Color.BLUE);
     }
     
     /**
@@ -109,7 +102,6 @@ public class Spiel
      */
     private void spielen()
     {
-        
         String eingabe;
         boolean ende = false;
         
@@ -118,65 +110,50 @@ public class Spiel
             switch(eingabe){
                 case("l"):
                 //Wurfrichtung nach links
-                wurf1.wurfrichtungLinks();
-                saveEingabe = eingabe; 
-                break;
+                    wurf1.wurfrichtungLinks();
+                    saveEingabe = eingabe; 
+                    break;
                     
                 case("r"):
                 //Wurfrichtung nach rechts
-                wurf1.wurfrichtungRechts();
-                saveEingabe = eingabe; 
-                break;
+                    wurf1.wurfrichtungRechts();
+                    saveEingabe = eingabe; 
+                    break;
                     
                 case("+"):
                 //Geschwindigkeit erhöhen
-                wurf1.geschwindigkeitPlus();
-                saveEingabe = eingabe; 
-                break;
+                    wurf1.geschwindigkeitPlus();
+                    saveEingabe = eingabe; 
+                    break;
                     
                 case("-"):
                 //Geschwindigkeit reduzieren
-                wurf1.geschwindigkeitMinus();
-                saveEingabe = eingabe; 
-                break;
+                    wurf1.geschwindigkeitMinus();
+                    saveEingabe = eingabe; 
+                    break;
                     
                 case("s"):
                 //Ball wird geworfen
                 //Nächste s-Eingabe wird verhindert.
-                nächsteEingabe();                 
-                
-                break;
+                    werfen();                 
+                    break;
                     
                 case("f"):
-                //Löschen und erneutes Zeichnen des Spielfeldes.
-                //Der Ball ist wieder am Startpunkt.
-                ball1.loescheBall();
-                leinwand.wait(20);
-                leinwand.erase(); 
-                leinwand.wait(20);
-                //Startwerte aus vorherigem Wurf übernehmen
-                int boden = 400;
-                ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand);
-                wurf1 = new Wurf (520, 380, wurf1.getXPunkt(), wurf1.getYPunkt() , 
-                    wurf1.getGeschwindigkeit(), wurf1.getWinkel(), Color.green, leinwand, ball1);
-                zeichneSpielfeld();
-                ball1.zeichneBallamAnfang();
-                
-                   
+                    neustarten();
+                    saveEingabe = eingabe;
                     break;
                     
                 case("h"):
                 //Ausgabe des Hilfetextes
-                konsole.zeigeHilfetext();
-                saveEingabe = eingabe; 
+                    konsole.zeigeHilfetext();
+                    saveEingabe = eingabe; 
                     break; 
                     
                 case("q"):
                 //Spielende
-                ende=true;
-                konsole.qEingabe();
-                System.exit(0);
-                
+                    ende=true;
+                    konsole.qEingabe();
+                    System.exit(0);
                     break; 
                     
                 default:
@@ -193,12 +170,35 @@ public class Spiel
     }
     
     /**
+     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
+     * 
+     * @param  y	(Beschreibung des Parameters)
+     * @return		(Beschreibung des Rückgabewertes)
+     */
+    public void neustarten()
+    {
+        //Löschen und erneutes Zeichnen des Spielfeldes.
+        //Der Ball ist wieder am Startpunkt.
+        //ball1.loescheBall();
+        //leinwand.wait(20);
+        leinwand.erase(); 
+        //leinwand.wait(20);
+        //Startwerte aus vorherigem Wurf übernehmen
+        int boden = 400;
+        ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand);
+        wurf1 = new Wurf (520, 380, wurf1.getXPunkt(), wurf1.getYPunkt() , 
+               wurf1.getGeschwindigkeit(), wurf1.getWinkel(), Color.green, leinwand, ball1);
+        zeichneSpielfeld();
+        //ball1.zeichneBall();
+    }
+
+    /**
      * Methode, damit "s" nur einmal ausgeführt werden kann.
      * Danach muss das Spiel neugestartet oder beendet werden.
      *
      * @param ERGÄNZEN  
      */
-    public void nächsteEingabe()
+    public void werfen()
     {
         wurf1.werfen();
         int boden = 400;
@@ -210,24 +210,9 @@ public class Spiel
         while (!sEingabe){
             switch(eingabe){
             case("f"):
-            //Gleiche Aufforderungen wie oben
-            //löschen und erneutes Zeichnen des Spielfeldes.
-            //der Ball ist wieder am Startpunkt.
-                saveEingabe=eingabe; 
-                konsole.zeigeHilfetext();
-                ball1.loescheBall();
-                leinwand.wait(20);
-                leinwand.erase(); 
-                leinwand.wait(20);
-            //Startwerte aus vorherigem Wurf übernehmen
-                ball1 = new Ball (500, 360, 40, Color.yellow, boden, leinwand);
-                wurf1 = new Wurf (520, 380, wurf1.getXPunkt(), wurf1.getYPunkt() , 
-                    wurf1.getGeschwindigkeit(), wurf1.getWinkel(), Color.green, leinwand, ball1);
-                zeichneSpielfeld();
-                ball1.zeichneBallamAnfang();
+                neustarten();
             //Beenden der Schleife
                 sEingabe = true;
-            
             break;
             
             case("q"):
@@ -235,7 +220,6 @@ public class Spiel
                 sEingabe = true;    
                 konsole.qEingabe(); 
                 System.exit(0);
-            
             break;
             
             

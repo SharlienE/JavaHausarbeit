@@ -21,8 +21,8 @@ public class Wurf
 {
     public Canvas leinwand;
     
-    public int geschwindigkeit;   // Anfangsgeschwindigkeit
-    public int winkel;             // Anfangswinkel
+    public int geschwindigkeit = 200;   // Anfangsgeschwindigkeit
+    public int alpha = 45;             // Anfangswinkel
     
     private Color farbe;
     private Ball ball1;
@@ -33,6 +33,8 @@ public class Wurf
     private int wandlinks = 0;          // x - Koordinaten der Wand links
     public boolean deckeGetroffen = false;
     public boolean wandGetroffen = false;
+    private double yÄnderung; 
+    private double xÄnderung;
 
     /**
      * Konstruktor für Objekte Wurf
@@ -44,37 +46,56 @@ public class Wurf
      * 
      * 
      */
-    public Wurf(int xStart, int yStart, int xEnde, int yEnde, int v, int alpha, Color linienFarbe, Canvas leinwand, Ball ball1)    
+    public Wurf(int xStart, int yStart, int xEnde, int yEnde,int v, int winkel0,
+                Color linienFarbe, Canvas leinwand, Ball ball1)    
     {
         yAnfang = yStart;
         xAnfang = xStart;
         xPunkt = xEnde;
         yPunkt = yEnde;
         geschwindigkeit = v;
-        winkel = alpha;
+        alpha = winkel0;
         this.leinwand = leinwand;
         farbe = linienFarbe;
         this.ball1 = ball1;
+    }
+        
+    /**
+     * Getter für X Punkt
+     */
+    public int getXPunkt()
+    {
+        // tragen Sie hier den Code ein
+        return xPunkt;
+    }
+    
+    /**
+     * Getter für Y Punkt
+     */
+    public int getYPunkt()
+    {
+        // tragen Sie hier den Code ein
+        return yPunkt;
     }
     
     /**
      * Berechnung für X Position durch Geschwindigkeit und Winkel
      */
-    public int getXPunkt()
+    public void setXPunkt()
     {
-        double winkel1= ((winkel*Math.PI)/180);  
-        double xPosition = xAnfang - (Math.cos(winkel1) * geschwindigkeit);
-        return xPunkt;
+        double winkel= ((alpha*Math.PI)/180);  
+        double xPosition = xAnfang - (Math.cos(winkel) * geschwindigkeit);
+        xPunkt = (int)xPosition;
     }
     
     /**
      * Berechnung für Y Position durch Geschwindigkeit und Winkel
      */
-    public int getYPunkt()
+    public void setYPunkt()
     {
-        double winkel1= ((winkel*Math.PI)/180);  
-        double yPosition = yAnfang - (Math.sin(winkel1) * geschwindigkeit);
-        return yPunkt;
+        double winkel= ((alpha*Math.PI)/180);  
+        double yPosition = yAnfang - (Math.sin(winkel) * geschwindigkeit);
+        yPunkt = (int)yPosition;
     }
     
     /**
@@ -84,9 +105,9 @@ public class Wurf
      */
     public void wurfrichtungZeichnen()
     {    
+        setXPunkt();
+        setYPunkt();
         leinwand.setForegroundColor(farbe);
-        getXPunkt();
-        getYPunkt();
         leinwand.drawLine(xAnfang, yAnfang, xPunkt, yPunkt); 
     }
   
@@ -103,7 +124,7 @@ public class Wurf
     
     {
         leinwand.setForegroundColor(Color.black);
-        leinwand.drawString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/10), 350, 450);
+        leinwand.drawString("Anfangsgeschwindigkeit: " + (geschwindigkeit/10), 350, 450);
     }
     
     /**
@@ -154,8 +175,8 @@ public class Wurf
            setGeschwindigkeit(geschwindigkeit += 10);
            vZeichnen();    
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
-           getXPunkt();
-           getYPunkt();
+           setXPunkt();
+           setYPunkt();
            ball1.zeichneBall();
            wurfrichtungZeichnen();
        }     
@@ -180,8 +201,8 @@ public class Wurf
            setGeschwindigkeit(geschwindigkeit -= 10);
            vZeichnen();
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
-           getXPunkt();
-           getYPunkt();
+           setXPunkt();
+           setYPunkt();
            ball1.zeichneBall();
            wurfrichtungZeichnen();
         }   
@@ -189,22 +210,22 @@ public class Wurf
            System.out.println("Langsamer geht leider nicht...");
       }
     }
-    
+
     /**
      * Getter für Winkel
      */
     public int getWinkel()
     {
         // tragen Sie hier den Code ein
-        return winkel;
+        return alpha;
     }
     
     /**
      * Setter für Winkel
      */
-    public void setWinkel(int alpha)
+    public void setWinkel(int winkel0)
     {
-        winkel = alpha;
+        alpha = winkel0;
     }
     
     /**
@@ -217,16 +238,16 @@ public class Wurf
      */
     public void wurfrichtungRechts()
     {
-        if(winkel <= 175){
-           setWinkel(winkel += 5);
-            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
+        if(alpha <= 175){
+           setWinkel(alpha += 5);
+           leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
           
-           getXPunkt();
-           getYPunkt();
+           setXPunkt();
+           setYPunkt();
            ball1.zeichneBall();
            wurfrichtungZeichnen();
         } else  {
-            System.out.println("Mehr AfD geht nicht...");
+            System.out.println("Weiter nach rechts geht nicht...");
         }
     }   
     
@@ -240,77 +261,54 @@ public class Wurf
      */
     public void wurfrichtungLinks()
     {
-        if(winkel >= 5){
-           setWinkel(winkel -= 5);
+        if(alpha >= 5){
+           setWinkel(alpha -= 5);
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            
-           getXPunkt();
-           getYPunkt();
+           setXPunkt();
+           setYPunkt();
            ball1.zeichneBall();
            wurfrichtungZeichnen();      
         }  else {
-             System.out.println("Mehr Wagenknecht geht nicht...");
+             System.out.println("Weiter nach links geht nicht...");
         }
     }
     
+    /**
+     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
+     * 
+     * @param  y    (Beschreibung des Parameters)
+     * @return      (Beschreibung des Rückgabewertes)
+     */
+    private void berechneÄnderung()
+    {
+        double winkel1 = ((alpha*Math.PI)/180);
+        double yDelta = (Math.sin(winkel1) * (geschwindigkeit/10)); 
+        yÄnderung = (int) (yDelta);
+        double xDelta = (Math.cos(winkel1) * (geschwindigkeit/10));  
+        xÄnderung = (int) (xDelta);
+    }
+
     //Passt das so??
     /**
      * Bewege diesen Ball entsprechend seiner Position und 
      * Geschwindigkeit und zeichne ihn erneut.
      **/
     public void bewegen()
-    {
-        //ball1.loescheBall();
-        
-        //Decke getroffen? 
-        if(deckeGetroffen == true){
-            getWinkel();
-            winkel += 180;      // Also es klappt so halb mit 180 Grad..
-            // Aber muss hier nicht irgendwie Einfallswinkel = Ausfallswinkel?
-            
-            // Damit die Leinwand nicht verschwindet, wenn der Ball durchgeht...
-            leinwand.setFont(new Font("helvetica", Font.BOLD, 14));
-            leinwand.setForegroundColor(Color.BLUE);
-            leinwand.drawString("Spiel: Korbwurf", 220, 20);
-            leinwand.drawLine(0,0,600,0);
-        } 
-        //Wand getroffen?
-        if(wandGetroffen == true){
-            //Left Bounce
-             if(ball1.getXPosition() <= (wandlinks + ball1.durchmesser)){
-                 winkel += 90;
-                 // Hier siehe oben...?
-                    
-                 // Damit die Leinwand nicht verschwindet, wenn der Ball durchgeht...
-                 leinwand.setForegroundColor(Color.BLUE);
-                 leinwand.drawLine(0,400,0,0);
-                }
-            //Right Bounce
-             if (ball1.getXPosition() >= (wandrechts - ball1.durchmesser)){
-                 winkel -= 90;
-                 // Hier siehe oben...?
-                    
-                 //Damit die Leinwand nicht verschwindet, wenn der Ball durchgeht...
-                 leinwand.setForegroundColor(Color.BLUE);
-                 leinwand.drawLine(600,0,600,400);
-                }
-        }
-        gravitation += 1;
-        double winkel1 = ((winkel*Math.PI)/180);
-        double yÄnderung = (Math.sin(winkel1) * (geschwindigkeit)); 
-        double xÄnderung = (Math.cos(winkel1) * (geschwindigkeit));       
-        ball1.yPosition = ball1.yPosition - ((int)(yÄnderung/10) - gravitation);
-        ball1.xPosition = ball1.xPosition - (int)(xÄnderung/10);
-        deckeGetroffen = false;   
-        wandGetroffen = false;
-        // Boden erreicht?
-        if(ball1.yPosition >= (ball1.bodenhoehe - ball1.durchmesser) && yÄnderung>0) {
-            ball1.yPosition = (int) (ball1.bodenhoehe - ball1.durchmesser);
-            yÄnderung = -yÄnderung; 
-        }
+    {  
+      //ball1.loescheBall();
+        gravitation += 1;     
+        ball1.yPosition = ball1.yPosition - ((int)(yÄnderung) - gravitation);
+        ball1.xPosition = ball1.xPosition - (int)(xÄnderung);
         
         // An der neuen Position erneut zeichnen.
-        ball1.zeichneBall();
+        if(ball1.getYPosition()>360)
+        {
+            ball1.zeichneBall();
+        }
+        else{
+            ball1.zeichneBall();
+        }
     }  
     
     //Ich glaube, hier muss noch was verändert werden, damit "s" auf den neuen Ball zugreifen kann..
@@ -324,7 +322,8 @@ public class Wurf
      */
     public void werfen()
     {
-      boolean fertig = false;
+      berechneÄnderung();
+        boolean fertig = false;
       while (!fertig)
       {
           int boden = 400;
@@ -353,13 +352,13 @@ public class Wurf
           //Decke getroffen?
           if(ball1.getYPosition() <= 0 && geschwindigkeit > 0)
           {
-            deckeGetroffen = true;
+            yÄnderung = -yÄnderung;
           }
           
           //Wand getroffen?                 
           if((ball1.getXPosition() <= 0 || ball1.getXPosition() >= 560) && geschwindigkeit > 0)
           {
-            wandGetroffen = true;
+            xÄnderung = -xÄnderung;
           }
           
           // Ich glaube, die folgende If-Schleife kann raus... 
@@ -368,7 +367,7 @@ public class Wurf
           //{
           //  fertig = true;
           //}
-          if (ball1.getYPosition() >= 400 )
+          if (ball1.getYPosition() > 400 )
           {
               fertig=true;
             }

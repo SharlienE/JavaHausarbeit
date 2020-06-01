@@ -19,7 +19,7 @@ public class Ball
     //Instanzvariablen
     private Ellipse2D.Double kreis;
     private Color farbe;
-    public int durchmesser = 40;
+    public int durchmesser;
     public int xPosition;
     public int yPosition;
     public Canvas leinwand;
@@ -41,7 +41,6 @@ public class Ball
     {
         xPosition = xPos;
         xAnfang = xPos;
-        
         yPosition = yPos;
         yAnfang = yPos;
         farbe = ballfarbe;
@@ -57,6 +56,17 @@ public class Ball
     {
         leinwand.setForegroundColor(farbe);
         leinwand.fillCircle(xPosition, yPosition, durchmesser);
+    }
+    
+    /**
+     * Zeichne den Ball an der Position am Anfang.
+     **/
+    public void zeichneBallAmAnfang()
+    {
+        leinwand.setForegroundColor(farbe);
+        leinwand.fillCircle(xAnfang, yAnfang, durchmesser);
+        xPosition = xAnfang;
+        yPosition = yAnfang;
     }
 
     /**
@@ -86,20 +96,4 @@ public class Ball
     {
         return yPosition;
     }
-    
-    /**
-     * Ball in die Anfangsposition zurück versetzen.
-     *
-     */
-    public void zeichneBallamAnfang()
-    {
-        // put your code here
-        
-         
-        leinwand.setForegroundColor(farbe);
-        leinwand.fillCircle(xAnfang, yAnfang, durchmesser);
-        xPosition = xAnfang;
-        yPosition = yAnfang;
-    }
-
 }
