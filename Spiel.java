@@ -55,7 +55,7 @@ public class Spiel
     /**
      * Methode zum Zeichnen des Spielfeldes
      */
-    public void zeichneSpielfeld()
+    private void zeichneSpielfeld()
     {
         leinwand.setFont(new Font("helvetica", Font.BOLD, 14));
         leinwand.setForegroundColor(Color.BLUE);
@@ -135,7 +135,7 @@ public class Spiel
                 case("s"):
                 //Ball wird geworfen
                 //Nächste s-Eingabe wird verhindert.
-                    werfen();                 
+                    werfenSpiel();                 
                     break;
                     
                 case("f"):
@@ -175,7 +175,7 @@ public class Spiel
      * @param  y	(Beschreibung des Parameters)
      * @return		(Beschreibung des Rückgabewertes)
      */
-    public void neustarten()
+    private void neustarten()
     {
         //Löschen und erneutes Zeichnen des Spielfeldes.
         //Der Ball ist wieder am Startpunkt.
@@ -198,7 +198,7 @@ public class Spiel
      *
      * @param ERGÄNZEN  
      */
-    public void werfen()
+    private void werfenSpiel()
     {
         wurf1.werfen();
         int boden = 400;
