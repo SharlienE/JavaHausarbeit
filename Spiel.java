@@ -203,7 +203,7 @@ public class Spiel
                 konsole.falscheEingabe();
                     break;
             }
-            eingabe = lesen(">"); //Sonst Endlos-Schleife
+            eingabe = lesen(">"); // Sonst Endlos-Schleife
             if (eingabe.equals("")){
                 // Bei Enter wird das vorherige Kommando ausgeführt
                 eingabe = saveEingabe;
