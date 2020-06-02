@@ -29,6 +29,8 @@ public class Ball
         
     /**
      * Konstruktor für Objekte Ball
+     * Im Konstrutor werden die Werte festgelegt die unser Objekt in einen
+     * gültigen Zusand versetzen.
      * 
      * 
      * Parameter:
@@ -50,7 +52,9 @@ public class Ball
     }
 
     /**
-     * Zeichne den Ball an der aktuellen Position.
+     * Die folgende Methode zeichnet den Ball immer an der aktuellen Stelle
+     * auf der Leinwand. Der Befehl leinwand.fillcircle braucht dafür die x-
+     * sowie yPosition und den von uns festgelegten Durchmessers des Balles.
      **/
     public void zeichneBall()
     {
@@ -59,7 +63,16 @@ public class Ball
     }
     
     /**
-     * Zeichne den Ball an der Position am Anfang.
+     * Diese Methode zeichnet den Ball an seiner von uns festgelegten
+     * Ursprungsposition. Dies passiert durch den Aufruf dieser Methode
+     * durch private void zeichneSpielfeld() in Klasse Spiel. 
+     * 
+     * Parameter:
+     * int xAnfang
+     * int xPosition
+     * int yPosition
+     * int yAnfang
+     * int durchmesser
      **/
     public void zeichneBallAmAnfang()
     {
@@ -69,16 +82,12 @@ public class Ball
         yPosition = yAnfang;
     }
 
+
     /**
-     * Lösche den Ball an seiner aktuellen Position.
-     **/
-    public void loescheBall()
-    {
-        leinwand.eraseCircle(xPosition, yPosition, durchmesser);
-    }    
-     
-    /**
-     * Gebe die xPosition des Balls zurück. 
+     * Diese Methode gibt die aktuelle xPosition des Balles aus. Die aktuelle
+     * Position des Balles wird benötigt um den Wurf zu berechnen. Außerdem
+     * um zu überprufen ob der Ball beim Werfen die Decke berührt oder den
+     * Korb getroffen hat.
      * 
      * @return xPosition (aktuelle xPosition des Balls)
      */
@@ -88,7 +97,9 @@ public class Ball
     }
 
     /**
-     * Gebe die yPosition des Balls zurück. 
+     * Die Methode getYposition() gibt wie die aktuelle yPostion des Balles
+     * aus. Auch hier wird der Wert zur Berechnung des Wurfes oder zum
+     * Überprüfen ob die Wände oder Korb getrofen wurden.
      * 
      * @return yPosition (aktuelle yPosition des Balls)
      */
