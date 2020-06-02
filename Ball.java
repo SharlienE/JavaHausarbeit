@@ -10,7 +10,9 @@ import java.awt.geom.*;
  * und eine Farbe.
  * Das Objekt "Ball" wird in der Klasse Spiel erzeugt. 
  * 
- * @author
+ * @author Jan Rietmüller (JR)
+ * @author Sharlien Ehlers (SE)
+ * @author Ann-Kathrin Siekmeier (AS)
  *
  */
 

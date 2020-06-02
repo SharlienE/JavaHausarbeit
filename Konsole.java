@@ -5,9 +5,9 @@
  * In dieser Klasse befinden sich alle Ausgaben der Konsole, die dem Spieler
  * bei Eingabe eines Kommandos übergeben werden. 
  * 
- * 
- * 
- * @author (Ihr Name) 
+ * @author Jan Rietmüller (JR)
+ * @author Sharlien Ehlers (SE)
+ * @author Ann-Kathrin Siekmeier (AS)
  * 
  */
 public class Konsole

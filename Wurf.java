@@ -14,7 +14,9 @@ import java.lang.Math;
  * Ein Ball kann bewegt werden, wenn der Spiele die Eingabe "s" tätigt und 
  * somit die Methode "werfen" vom Programm aufgerufen wird.
  * 
- * @author 
+ * @author Jan Rietmüller (JR)
+ * @author Sharlien Ehlers (SE)
+ * @author Ann-Kathrin Siekmeier (AS)
  * 
  */
 public class Wurf

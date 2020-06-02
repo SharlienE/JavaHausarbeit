@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.awt.*;
-import java.awt.geom.*;
+//import java.awt.geom.*;
 /**
  * Klasse Spiel
  * Dies ist die Main-Klasse des Programms "Korbwurf"
@@ -57,7 +57,7 @@ public class Spiel
      * 
      * @public - Die Methode kan von außerhalb der Klasse aufgerufen werden
      * @static - Sie wird aufgerufen, ohne dass vorher ein Objekt der Klasse 
-     *           Spiel erzeugt wurde; keine Instanzmethode
+     *           Spiel erzeugt wurde; Klassenmethode
      * @void   - Kein Rückgabewert
      * @String[] args - Arrray wird übergeben, welches die Werte der 
      *                  vom Aufruf entgegengenommenden Kommandozeilen beinhaltet
