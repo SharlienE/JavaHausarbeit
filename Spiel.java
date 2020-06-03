@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.awt.*;
-//import java.awt.geom.*;
+import java.awt.geom.*;
 /**
  * Klasse Spiel
  * Dies ist die Main-Klasse des Programms "Korbwurf"

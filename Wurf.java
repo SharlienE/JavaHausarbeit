@@ -269,6 +269,7 @@ public class Wurf
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            setXPunkt();
            setYPunkt();
+           ball1.zeichneBall();
            wurfrichtungZeichnen();
         } else  {
            System.out.println("Weiter nach rechts geht nicht...");
@@ -290,6 +291,7 @@ public class Wurf
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            setXPunkt();
            setYPunkt();
+           ball1.zeichneBall();
            wurfrichtungZeichnen();      
         }  else {
            System.out.println("Weiter nach links geht nicht...");
@@ -327,11 +329,8 @@ public class Wurf
         //Berechnung von x- und y-Position des Balls
         ball1.yPosition = ball1.yPosition - ((int)(yÄnderung) - gravitation);
         ball1.xPosition = ball1.xPosition - (int)(xÄnderung);
-        // An der neuen Position erneut zeichnen, wenn der Ball über dem Boden ist
-        if(ball1.getYPosition()>360)
-        {
-            ball1.zeichneBall();
-        }
+        // An der neuen Position erneut zeichnen
+        ball1.zeichneBall();
     }  
     
     /**
