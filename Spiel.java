@@ -174,6 +174,7 @@ public class Spiel
         
        
         // Kommandos aus Konsole lesen
+        // Eingabeaufforderung an den Benutzer
         eingabe = lesen (">");
         while (!ende){
             switch(eingabe){
@@ -236,6 +237,7 @@ public class Spiel
                 konsole.falscheEingabe();
                     break;
             }
+            // Eingabeaufforderung an den Benutzer
             eingabe = lesen(">"); // Sonst Endlos-Schleife
             if (eingabe.equals("")){
                 // Bei Enter wird das vorherige Kommando ausgeführt
@@ -290,14 +292,13 @@ public class Spiel
     {
         // ersten Wurf ausführen
         wurf1.werfen();
-        int boden = 400;
         
         // Hilfetext nach der Eingabe von "s" anzeigen
         konsole.zeigeStext();
         
         // Eingabe neu lesen und "s" verhindern
         String eingabe;
-        eingabe = lesen (">");
+        eingabe = lesen (">"); // Eingabeaufforderung an den Benutzer
         boolean sEingabe = false; 
         
         while (!sEingabe){
@@ -323,6 +324,7 @@ public class Spiel
                     break;
             }
             // Damit s nicht erneut bei Enter ausgeführt wird, sonst Endlos-Schleife
+            // Eingabeaufforderung an den Benutzer
             if(!sEingabe)
             {
                 eingabe = lesen(">"); 
