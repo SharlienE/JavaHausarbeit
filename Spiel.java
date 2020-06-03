@@ -60,7 +60,7 @@ public class Spiel
      *           Spiel erzeugt wurde; Klassenmethode
      * @void   - Kein Rückgabewert
      * @String[] args - Arrray wird übergeben, welches die Werte der 
-     *                  vom Aufruf entgegengenommenden Kommandozeilen beinhaltet
+     *                  vom Aufruf entgegengenommenen Kommandozeilen beinhaltet
      */
     public static void main(String[] args){
         // Implementierung der Programmlogik
@@ -113,8 +113,8 @@ public class Spiel
         // Benutzer eingegeben werden kann
         System.out.println(prompt);
         
-        // einlesen
         // Scanner gibt die übersprungene Eingabe zurück
+        // String wird eingelesen
         eingabe = scanner.nextLine();
         
         // Konverieren in kleine Buchstaben und entfernen der führenden 
