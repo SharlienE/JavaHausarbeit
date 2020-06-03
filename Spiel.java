@@ -28,6 +28,20 @@ public class Spiel
     
     /**
      * Konstruktor für Objekte der Klasse Spiel
+     * 
+     * Parameter:
+     * int boden - Wert der Bodenpositionslinie
+     * int xPos  - xPosition des Balls
+     * int yPos  - yPosition des Balls
+     * int balldurchmesser - Wert des Balldurchmessers
+     * int xStart - x-Wert für den Startpunkt der Wurfrichtungslinie
+     * int yStart - y-Wert für den Startpunkt der Wurfrichtungslinie
+     * int xEnde  - x-Wert für den Endpunkt der Wurfrichtungslinie
+     * int yEnde  - y-Wert für den Endpunkt der Wurfrichtungslinie
+     * int v      - Wert der Anfangsgeschwindigkeit
+     * int winkel0 - Wert des Anfangswinkels für den Wurf
+     * 
+     *  
      */
     public Spiel()
     {
@@ -69,7 +83,12 @@ public class Spiel
     }
     
     /**
-     * Methode zum Zeichnen des Spielfeldes
+     * Methode zum Zeichnen des Spielfeldes: 
+     * Rahmen, Korb, Ball, Wurfrichtung und Anfangsgeschwindigkeit
+     * 
+     * Parameter:
+     * int boden - Wert der Bodenpositionslinie
+     * 
      */
     private void zeichneSpielfeld()
     {
@@ -103,6 +122,14 @@ public class Spiel
     
     /**
      * Lesen eines Kommandos, welcher in der Konsole eingegeben wurde 
+     * 
+     * Parameter:
+     * String eingabe - das, was vom Benutzer eingegeben wird
+     * String prompt  - Eingabeaufforderungen, sodass der Benutzer sehen kann, 
+     *                  dass er etwas eingeben muss. 
+     *                  
+     * @return eingabe
+     * 
      */
    
      private String lesen (String prompt){ 
@@ -117,7 +144,7 @@ public class Spiel
         // String wird eingelesen
         eingabe = scanner.nextLine();
         
-        // Konverieren in kleine Buchstaben und entfernen der führenden 
+        // Konvertieren in kleine Buchstaben und entfernen der führenden 
         // und folgenden Leerzeichen
         if (eingabe.length()>0){
             eingabe = eingabe.toLowerCase().trim();
@@ -132,7 +159,11 @@ public class Spiel
      * Wenn ein Kommando vom Benutzer eingegeben wurde, führe die nachfolgenden
      * Anweisungen aus.
      * 
-     * @param eingabe - das, was vom Benutzer eingegeben wird
+     * Parameter:
+     * String eingabe - das, was vom Benutzer eingegeben wird
+     * boolean ende   - zum Beenden der While-Schleife
+     * String saveEingabe - zum Zwischenspeichern der vorherigen Eingabe
+     * 
      */
     private void spielen()
     {
@@ -178,6 +209,8 @@ public class Spiel
                     break;
                     
                 case("f"):
+                //Leinwand wird gelöscht und neugezeichnet
+                //Ball befindet sich wieder in der Ausgangsposition
                     neustarten();
                     saveEingabe = eingabe;
                     break;
@@ -217,6 +250,12 @@ public class Spiel
      * Der Ball befindet sich wieder am Startpunkt.
      * Werte aus vorherigen Würfen werden übernommen.
      * 
+     * Parameter:
+     * int boden - Wert der Bodenpositionslinie
+     * int xPos  - xPosition des Balls
+     * int yPos  - yPosition des Balls
+     * int balldurchmesser - Wert des Balldurchmessers
+     * 
      */
     private void neustarten()
     {
@@ -241,7 +280,10 @@ public class Spiel
      * Methode, damit "s" nur einmal ausgeführt werden kann.
      * Danach muss das Spiel neugestartet oder beendet werden.
      * 
-     * @param boden - int Wert der Bodenpositionslinie
+     * Parameter:
+     * int boden        - Wert der Bodenpositionslinie
+     * String eingabe   - das, was vom Benutzer eingegeben wird
+     * boolean sEingabe - zum Beenden der While-Schleife
      * 
      */
     private void werfenSpiel()
