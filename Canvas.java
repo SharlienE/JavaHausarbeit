@@ -256,8 +256,10 @@ public class Canvas
         canvas.repaint();
     }
     
+    /**
+     * https://stackoverrun.com/de/q/6011861
+     */
     public void drawDashedLine(int x1, int y1, int x2, int y2){
-        //set the stroke of the copy, not the original 
         Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
         graphic.setStroke(dashed);
         graphic.drawLine(x1, y1, x2, y2);
