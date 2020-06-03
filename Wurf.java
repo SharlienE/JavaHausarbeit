@@ -94,7 +94,7 @@ public class Wurf
      * (double) winkel
      * (int) xAnfang, geschwindigkeit, xPunkt
      */
-    public void setXPunkt()
+    private void setXPunkt()
     {
         // verändernde Methode für x- Koordinate des Balls
         // Umrechnung von Bogenmaß in Grad
@@ -110,7 +110,7 @@ public class Wurf
      * (double) winkel
      * (int) yAnfang, geschwindigkeit, yPunkt
      */
-    public void setYPunkt()
+    private void setYPunkt()
     {
         // verändernde Methode für y- Koordinate des Balls
         // Umrechnung von Bogenmaß in Grad
@@ -155,7 +155,7 @@ public class Wurf
      *
      * (int) geschwindigkeit
      */
-    public void geschwindigkeitErase()
+    private void geschwindigkeitErase()
     
     {
        leinwand.eraseString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/10), 350, 450);
@@ -175,7 +175,7 @@ public class Wurf
      * 
      * (int) v, geschwindigkeit
      */
-    public void setGeschwindigkeit(int v)
+    private void setGeschwindigkeit(int v)
     {
         // verändernde Methode für Geschwindigkeit
         geschwindigkeit = v;
@@ -248,7 +248,7 @@ public class Wurf
      * 
      * (int) alpha, winkel0
      */
-    public void setWinkel(int winkel0)
+    private void setWinkel(int winkel0)
     {
         // verändernde Methode für Wurfrichtung, damit sie verändert wird
         alpha = winkel0;
@@ -322,7 +322,7 @@ public class Wurf
      * 
      * (int) gravitation, yÄnderung, xÄnderung
      **/
-    public void bewegen()
+    private void bewegen()
     {  
         //Gravitation nimmt immer um 1 zu
         gravitation += 1;     
