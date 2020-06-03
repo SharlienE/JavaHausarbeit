@@ -23,18 +23,18 @@ public class Wurf
 {
     public Canvas leinwand;
     
-    public int geschwindigkeit = 200;   // Anfangsgeschwindigkeit
-    public int alpha = 45;             // Anfangswinkel
+    public int geschwindigkeit;   // Anfangsgeschwindigkeit
+    public int alpha;             // Anfangswinkel
     
     private Color farbe;
     private Ball ball1;
     private int yAnfang, yPunkt; 
     private int xAnfang, xPunkt; 
     private int gravitation = 1;        // Einfluss der Gravitation
-    private int wandrechts = 600;       // x-Koordinaten der Wand rechts
+    private int wandrechts = 600;       // x - Koordinaten der Wand rechts
     private int wandlinks = 0;          // x - Koordinaten der Wand links
-    public boolean deckeGetroffen = false;
-    public boolean wandGetroffen = false;
+    private boolean deckeGetroffen = false;
+    private boolean wandGetroffen = false;
     private double yÄnderung; 
     private double xÄnderung;
 
@@ -51,12 +51,16 @@ public class Wurf
     public Wurf(int xStart, int yStart, int xEnde, int yEnde,int v, int winkel0,
                 Color linienFarbe, Canvas leinwand, Ball ball1)    
     {
+        //Koordinaten des Balls am Boden
         yAnfang = yStart;
         xAnfang = xStart;
+        //Koordinaten des Punktes zum Zeichnen der Linie
         xPunkt = xEnde;
         yPunkt = yEnde;
+        //Parameter des Wurfes
         geschwindigkeit = v;
         alpha = winkel0;
+        //Grafik & Ball, die hier benutzt werden, sind die Gleichen wie sonst auch
         this.leinwand = leinwand;
         farbe = linienFarbe;
         this.ball1 = ball1;
@@ -64,39 +68,55 @@ public class Wurf
         
     /**
      * Getter für X Punkt
+     * 
+     * (int) xPunkt
      */
     public int getXPunkt()
     {
-        // tragen Sie hier den Code ein
+        // sondierende Methode für x-Koordinate des Balls
         return xPunkt;
     }
     
     /**
      * Getter für Y Punkt
+     * 
+     * (int) yPunkt
      */
     public int getYPunkt()
     {
-        // tragen Sie hier den Code ein
+        // sondierende Methode für y-Koordinate des Balls
         return yPunkt;
     }
     
     /**
      * Berechnung für X Position durch Geschwindigkeit und Winkel
+     * 
+     * (double) winkel
+     * (int) xAnfang, geschwindigkeit, xPunkt
      */
     public void setXPunkt()
     {
-        double winkel= ((alpha*Math.PI)/180);  
+        // verändernde Methode für x- Koordinate des Balls
+        // Umrechnung von Bogenmaß in Grad
+        double winkel= ((alpha*Math.PI)/180);
         double xPosition = xAnfang - (Math.cos(winkel) * geschwindigkeit);
+        // "Umrechnung" von double in int
         xPunkt = (int)xPosition;
     }
     
     /**
      * Berechnung für Y Position durch Geschwindigkeit und Winkel
+     * 
+     * (double) winkel
+     * (int) yAnfang, geschwindigkeit, yPunkt
      */
     public void setYPunkt()
     {
+        // verändernde Methode für y- Koordinate des Balls
+        // Umrechnung von Bogenmaß in Grad
         double winkel= ((alpha*Math.PI)/180);  
         double yPosition = yAnfang - (Math.sin(winkel) * geschwindigkeit);
+        // "Umrechnung" von double in int
         yPunkt = (int)yPosition;
     }
     
@@ -107,8 +127,10 @@ public class Wurf
      */
     public void wurfrichtungZeichnen()
     {    
+        //Aufrufen der Koordinaten vom Punkt
         setXPunkt();
         setYPunkt();
+        //Farbe der Linie wählen, Linie zeichnen
         leinwand.setForegroundColor(farbe);
         leinwand.drawLine(xAnfang, yAnfang, xPunkt, yPunkt); 
     }
@@ -116,16 +138,14 @@ public class Wurf
     /**
      * Geschwindigkeit auf der Leinwand später anzeigen lassen.
      *
-     * @param   (float) geschwindigkeit
-     * @param   (String) "Anfangsgeschwindigkeit"
-     * 
-     * durch 100 teilen, weil sonst zu groß?
-     * --> so wird statt 200, nur 2.0 angezeigt. 
+     * (int) geschwindigkeit
      */
     public void vZeichnen()
     
     {
+        //Farbe der Schrift wählen, Geschwindigkeit anzeigen lassen
         leinwand.setForegroundColor(Color.black);
+        // es wird /10 gerechnet, damit die Zahlen kleiner angezeigt werden
         leinwand.drawString("Anfangsgeschwindigkeit: " + (geschwindigkeit/10), 350, 450);
     }
     
@@ -133,9 +153,7 @@ public class Wurf
      * Geschwindigkeit wieder auf der Leinwand löschen, 
      * damit sie überschrieben werden kann
      *
-     * @param   (float) geschwindigkeit
-     * @param   (String) "Anfangsgeschwindigkeit"
-     *
+     * (int) geschwindigkeit
      */
     public void geschwindigkeitErase()
     
@@ -148,38 +166,40 @@ public class Wurf
      */
     public int getGeschwindigkeit()
     {
-        // tragen Sie hier den Code ein
+        // sondierende Methode für Geschwindigkeit, damit sie verändert werden kann
         return geschwindigkeit;
     }
     
     /**
      * Setter für Geschwindigkeit
+     * 
+     * (int) v, geschwindigkeit
      */
     public void setGeschwindigkeit(int v)
     {
+        // verändernde Methode für Geschwindigkeit
         geschwindigkeit = v;
     }
 
     /**
-     * Wenn die Geschwindigkeit mit der Eingabe "+" um eine Einheit erhöht werden soll
-     * Einheit = 10
-     * nicht schneller als 5.0
-     * "setGeschwindigkeitHoch"
+     * Die Geschwindigkeit wird mit der Eingabe "+" um 10 Einheiten erhöht (in der Anzeige +1)
+     * Geschwindigkeit wird nur bis 500 (Anzeige: 50) erhöht
      *
-     * @param       ERGÄNZEN
+     * (int) geschwindigkeit, xAnfang, yAnfang, xPunkt, yPunkt
      *
      */
     public void geschwindigkeitPlus()
     
     {
-        if(geschwindigkeit < 500){
+       if(geschwindigkeit < 500){
+           //Geschwindigkeit wird erhöht
            geschwindigkeitErase();
            setGeschwindigkeit(geschwindigkeit += 10);
-           vZeichnen();    
+           vZeichnen(); 
+           //Wurflinie wird neu gezeichnet
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            setXPunkt();
            setYPunkt();
-           ball1.zeichneBall();
            wurfrichtungZeichnen();
        }     
        else {
@@ -188,10 +208,8 @@ public class Wurf
     }
     
     /**
-     * Wenn die Geschwindigkeit mit der Eingabe "-" um eine Einheit reduziert werden soll
-     * Einheit = 10
-     * nicht langsamer als 0.1
-     * "setGeschwindigkeitRunter"
+     * Die Geschwindigkeit wird mit der Eingabe "-" um 10 Einheiten reduziert (in der Anzeige +1)
+     * Geschwindigkeit wird nur über 10 (Anzeige: 1) reduziert
      *
      * @param       ERGÄNZEN
      */
@@ -199,13 +217,14 @@ public class Wurf
     
     {
        if(geschwindigkeit > 10 ){
+           //Geschwindigkeit wird erhöht
            geschwindigkeitErase();
            setGeschwindigkeit(geschwindigkeit -= 10);
            vZeichnen();
+           //Wurflinie wird neu gezeichnet
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            setXPunkt();
            setYPunkt();
-           ball1.zeichneBall();
            wurfrichtungZeichnen();
         }   
       else {
@@ -215,165 +234,163 @@ public class Wurf
 
     /**
      * Getter für Winkel
+     * 
+     * (int) alpha
      */
     public int getWinkel()
     {
-        // tragen Sie hier den Code ein
+        // sondierende Methode für Wurfrichtung, damit sie verändert werden kann
         return alpha;
     }
     
     /**
      * Setter für Winkel
+     * 
+     * (int) alpha, winkel0
      */
     public void setWinkel(int winkel0)
     {
+        // verändernde Methode für Wurfrichtung, damit sie verändert wird
         alpha = winkel0;
     }
     
     /**
-     * Wenn die Wurfrichtung mit der Eingabe "r" um eine Einheit nach rechts gehen soll
-     * Einheit = 5 Grad
-     * nicht weiter als 180 Grad (d.h. bei 175 Grad darf nicht mehr erhöht werden)
-     * "setRichtungHoch"
+     * die Wurfrichtung wird bei der Eingabe "r" um 5 Grad nach rechts gedreht
+     * Winkel wird bis 175 Grad erhöht
      * 
-     * @param       ERGÄNZEN
+     * (int) alpha, xAnfang, yAnfang, xPunkt, yPunkt  
      */
     public void wurfrichtungRechts()
     {
         if(alpha <= 175){
+           // Winkel wird erhöht
            setWinkel(alpha += 5);
+           // Wurfliie wird neu gezeichnet
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
-          
            setXPunkt();
            setYPunkt();
-           ball1.zeichneBall();
            wurfrichtungZeichnen();
         } else  {
-            System.out.println("Weiter nach rechts geht nicht...");
+           System.out.println("Weiter nach rechts geht nicht...");
         }
     }   
     
     /**
-     * Wenn die Wurfrichtung mit der Eingabe "l" um eine Einheit nach links gehen soll
-     * Einheit = 5 Grad
-     * nicht weiter als 0 Grad (d.h. bei 5 Grad darf nicht mehr reduziert werden)
-     * "setRichtungRunter"
+     * die Wurfrichtung wird bei der Eingabe "l" um 5 Grad nach links gedreht
+     * Winkel wird bis 5 Grad reduziert
      * 
-     * @param       ERGÄNZEN
+     * (int) alpha, xAnfang, yAnfang, xPunkt, yPunkt 
      */
     public void wurfrichtungLinks()
     {
         if(alpha >= 5){
+           //Winkel wird reduziert
            setWinkel(alpha -= 5);
+           //Wurflinie wird neu gezeichnet
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
-           
            setXPunkt();
            setYPunkt();
-           ball1.zeichneBall();
            wurfrichtungZeichnen();      
         }  else {
-             System.out.println("Weiter nach links geht nicht...");
+           System.out.println("Weiter nach links geht nicht...");
         }
     }
     
     /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
+     * Berechnung von der x- und y-Änderung
      * 
-     * @param  y    (Beschreibung des Parameters)
-     * @return      (Beschreibung des Rückgabewertes)
+     * (double) winkel1, yDelta, xDelta
+     * (int) alpha, geschwindigkeit, yÄnderung, xÄnderung
      */
     private void berechneÄnderung()
     {
+        //Umrechnung von Bogenmaß in Grad
         double winkel1 = ((alpha*Math.PI)/180);
+        //Berechnung der Änderung in y-Richtung
         double yDelta = (Math.sin(winkel1) * (geschwindigkeit/10)); 
         yÄnderung = (int) (yDelta);
+        //Berechnung der Änderung in x-Richtung
         double xDelta = (Math.cos(winkel1) * (geschwindigkeit/10));  
         xÄnderung = (int) (xDelta);
     }
 
-    //Passt das so??
     /**
      * Bewege diesen Ball entsprechend seiner Position und 
      * Geschwindigkeit und zeichne ihn erneut.
+     * 
+     * (int) gravitation, yÄnderung, xÄnderung
      **/
     public void bewegen()
     {  
-      //ball1.loescheBall();
+        //Gravitation nimmt immer um 1 zu
         gravitation += 1;     
+        //Berechnung von x- und y-Position des Balls
         ball1.yPosition = ball1.yPosition - ((int)(yÄnderung) - gravitation);
         ball1.xPosition = ball1.xPosition - (int)(xÄnderung);
-        
-        // An der neuen Position erneut zeichnen.
+        // An der neuen Position erneut zeichnen, wenn der Ball über dem Boden ist
         if(ball1.getYPosition()>360)
         {
             ball1.zeichneBall();
         }
-        else{
-            ball1.zeichneBall();
-        }
     }  
     
-    //Ich glaube, hier muss noch was verändert werden, damit "s" auf den neuen Ball zugreifen kann..
-    //Irgendjemand Ideen??
     /**
-     * Wenn der Ball durch die Eingabe "s" geworfen werden soll 
-     * (mit entsprechenden Paramtern, also Winkel und Geschwindigkeit)
+     * Der Ball wird durch die Eingabe "s"  geworfen
      *
-     * @param    ERGÄNZEN
+     * (boolean) fertig, 
      * 
      */
     public void werfen()
     {
+      // dauerhaufte Berechnung von der x- und y-Änderung
       berechneÄnderung();
-        boolean fertig = false;
+      boolean fertig = false;
       while (!fertig)
       {
           int boden = 400;
           leinwand.wait(50);
+          //während fertig = false, bewege den Ball
           bewegen();
-
-          // Korb getroffen?
+          
+          // Korb getroffen
           if (ball1.getXPosition() <= 60 && ball1.getYPosition() >=360)
           {
               fertig = true;
+              //zeichne grünen Korb
               leinwand.setForegroundColor(Color.GREEN);
               Rectangle korbSuccess = new Rectangle(0,400,100,20);
               leinwand.fill(korbSuccess);
+              //Ausgabe in Konsole
               System.out.println("Glückwunsch, Treffer!");
           }
-              
-          // Korb verfehlt?
+          // Korb nicht
           if(ball1.getYPosition() >= boden - ball1.durchmesser && ball1.getXPosition() >= 80) {
               fertig = true; 
+              //zeichne roten Korb
               leinwand.setForegroundColor(Color.RED);
               Rectangle korbFailed = new Rectangle(0,400,100,20);
               leinwand.fill(korbFailed);
+              //Ausgabe in Konsoe
               System.out.println("Schade, versuchen Sie es noch einmal!");
-            }
-          
-          //Decke getroffen?
+          }
+          //Decke getroffen
           if(ball1.getYPosition() <= 0 && geschwindigkeit > 0)
           {
-            yÄnderung = -yÄnderung;
+              //Verändere die y-Änderung, Winkel wird übernommen und umgedreht
+              yÄnderung = -yÄnderung;
           }
-          
-          //Wand getroffen?                 
+          //Wand getroffen                
           if((ball1.getXPosition() <= 0 || ball1.getXPosition() >= 560) && geschwindigkeit > 0)
           {
-            xÄnderung = -xÄnderung;
+              //Verändere die x-Änderung, Winkel wird übernommen und umgedreht
+              xÄnderung = -xÄnderung;
           }
-          
-          // Ich glaube, die folgende If-Schleife kann raus... 
-          // (Bitte vorsichtshalber als Kommentar so lassen)
-          //if(ball1.getYPosition() >= 360 && ball1.getXPosition() > 60  ) 
-          //{
-          //  fertig = true;
-          //}
+          //Boden berüht
           if (ball1.getYPosition() > 400 )
           {
+              //bewegen hört auf, weil der Booden getroffen wurde
               fertig=true;
-            }
+           }
        }          
      }
-
 }
