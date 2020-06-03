@@ -66,18 +66,21 @@ public class Spiel
     }
 
     /**
-     * Willkommen im Spiel "Korbwurf"
      * Main-Methode zum Aufruf des Spiels
+     * Willkommen im Spiel "Korbwurf"
      * 
-     * @public - Die Methode kan von außerhalb der Klasse aufgerufen werden
-     * @static - Sie wird aufgerufen, ohne dass vorher ein Objekt der Klasse 
-     *           Spiel erzeugt wurde; Klassenmethode
-     * @void   - Kein Rückgabewert
-     * @String[] args - Arrray wird übergeben, welches die Werte der 
-     *                  vom Aufruf entgegengenommenen Kommandozeilen beinhaltet
+     * Bitte bestätigen Sie mit "OK" um das Spiel zu starten. 
+     * 
      */
     public static void main(String[] args){
         // Implementierung der Programmlogik
+        
+        //@public - Die Methode kan von außerhalb der Klasse aufgerufen werden
+        //@static - Sie wird aufgerufen, ohne dass vorher ein Objekt der Klasse 
+        //          Spiel erzeugt wurde; Klassenmethode
+        //void    - Kein Rückgabewert
+        //@String[] args - Arrray wird übergeben, welches die Werte der 
+        //                 vom Aufruf entgegengenommenen Kommandozeilen beinhaltet
         Spiel neuesSpiel = new Spiel();
         neuesSpiel.spielen();
     }
