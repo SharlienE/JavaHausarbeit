@@ -6,8 +6,9 @@ import java.lang.Math;
  * Klasse Wurf
  * 
  * Die Klasse Wurf implementiert grafisch Bälle, die der Schwerkraft
- * unterworfen sind. Ein Ball kann bewegt werden. Die Bedingungen der Bewegung
- * werden dabei vom Ball selbst kontrolliert. Er fällt abwärts und beschleunigt
+ * unterworfen sind. Ein Ball kann bewegt werden. Die Bedingungen 
+ * (Geschwindigkeit, Wurfrichtung) der Bewegung können dabei vom Spieler 
+ * verändert werden. Er wird geworfen und beschleunigt
  * aufgrund der Schwerkraft. Er prallt ab, wenn er an eine Wand oder 
  * an der Decke auftrifft.
  * 
@@ -48,15 +49,15 @@ public class Wurf
      * 
      * 
      */
-    public Wurf(int xStart, int yStart, int xEnde, int yEnde,int v, int winkel0,
+    public Wurf(int xStart, int yStart, int xPos, int yPos,int v, int winkel0,
                 Color linienFarbe, Canvas leinwand, Ball ball1)    
     {
         //Koordinaten des Balls am Boden
         yAnfang = yStart;
         xAnfang = xStart;
         //Koordinaten des Punktes zum Zeichnen der Linie
-        xPunkt = xEnde;
-        yPunkt = yEnde;
+        xPunkt = xPos;
+        yPunkt = yPos;
         //Parameter des Wurfes
         geschwindigkeit = v;
         alpha = winkel0;
@@ -128,11 +129,11 @@ public class Wurf
     public void wurfrichtungZeichnen()
     {    
         //Aufrufen der Koordinaten vom Punkt
-        setXPunkt();
-        setYPunkt();
+        getXPunkt();
+        getYPunkt();
         //Farbe der Linie wählen, Linie zeichnen
         leinwand.setForegroundColor(farbe);
-        leinwand.drawLine(xAnfang, yAnfang, xPunkt, yPunkt); 
+        leinwand.drawDashedLine(xAnfang, yAnfang, xPunkt, yPunkt); 
     }
   
     /**
