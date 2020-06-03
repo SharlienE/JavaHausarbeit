@@ -159,7 +159,7 @@ public class Wurf
     private void geschwindigkeitErase()
     
     {
-       leinwand.eraseString("Anfangsgeschwindigkeit: " + ((float) geschwindigkeit/10), 350, 450);
+       leinwand.eraseString("Anfangsgeschwindigkeit: " + ((int) geschwindigkeit/10), 350, 450);
     }
     
     /**
@@ -192,7 +192,7 @@ public class Wurf
     public void geschwindigkeitPlus()
     
     {
-       if(geschwindigkeit < 500){
+       if(geschwindigkeit < 600){
            //Geschwindigkeit wird erhöht
            geschwindigkeitErase();
            setGeschwindigkeit(geschwindigkeit += 10);
@@ -263,14 +263,13 @@ public class Wurf
      */
     public void wurfrichtungRechts()
     {
-        if(alpha <= 175){
+        if(alpha < 175){
            // Winkel wird erhöht
            setWinkel(alpha += 5);
            // Wurfliie wird neu gezeichnet
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            setXPunkt();
            setYPunkt();
-           ball1.zeichneBall();
            wurfrichtungZeichnen();
         } else  {
            System.out.println("Weiter nach rechts geht nicht...");
@@ -285,14 +284,13 @@ public class Wurf
      */
     public void wurfrichtungLinks()
     {
-        if(alpha >= 5){
+        if(alpha > 5){
            //Winkel wird reduziert
            setWinkel(alpha -= 5);
            //Wurflinie wird neu gezeichnet
            leinwand.eraseLine(xAnfang, yAnfang, xPunkt, yPunkt);
            setXPunkt();
            setYPunkt();
-           ball1.zeichneBall();
            wurfrichtungZeichnen();      
         }  else {
            System.out.println("Weiter nach links geht nicht...");
@@ -342,7 +340,7 @@ public class Wurf
      */
     public void werfen()
     {
-      // dauerhaufte Berechnung von der x- und y-Änderung
+      // Berechnung von der x- und y-Änderung
       berechneÄnderung();
       boolean fertig = false;
       while (!fertig)
@@ -374,23 +372,17 @@ public class Wurf
               System.out.println("Schade, versuchen Sie es noch einmal!");
           }
           //Decke getroffen
-          if(ball1.getYPosition() <= 0 && geschwindigkeit > 0)
+          if(ball1.getYPosition() <= 0)
           {
               //Verändere die y-Änderung, Winkel wird übernommen und umgedreht
               yÄnderung = -yÄnderung;
           }
           //Wand getroffen                
-          if((ball1.getXPosition() <= 0 || ball1.getXPosition() >= 560) && geschwindigkeit > 0)
+          if((ball1.getXPosition() <= 0 || ball1.getXPosition() >= 560))
           {
               //Verändere die x-Änderung, Winkel wird übernommen und umgedreht
               xÄnderung = -xÄnderung;
           }
-          //Boden berüht
-          if (ball1.getYPosition() > 400 )
-          {
-              //bewegen hört auf, weil der Booden getroffen wurde
-              fertig=true;
-           }
        }          
      }
 }
