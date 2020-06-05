@@ -4,6 +4,9 @@ import java.awt.geom.*;
 /**
  * Klasse Spiel
  * Dies ist die Main-Klasse des Programms "Korbwurf"
+ * Hier befinden sich grundsätzlich alle Methoden, die für das Spielen
+ * notwendig sind. Dabei werden Objekte von anderen Klassen erzeugt 
+ * und Methoden aus unterschiedlichen Klassen aufgerufen. 
  * 
  * @author Jan Rietmüller (JR)
  * @author Sharlien Ehlers (SE)
